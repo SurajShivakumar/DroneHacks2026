@@ -1,4 +1,4 @@
-"""Strict pre-run preferences and provenance for future simulator integration."""
+"""Strict pre-run preferences and provenance; preparation never implies flight."""
 
 from dataclasses import asdict, dataclass
 from datetime import datetime, timezone
@@ -8,7 +8,11 @@ from pathlib import Path
 
 
 STRATEGIES = {
-    "classical": {"kind": "algorithm", "status": "path_and_speed_components_only"},
+    "classical": {
+        "kind": "algorithm",
+        "status": "native_openvins_sim_completed_organizer_pipeline_pending",
+        "evidence": "benchmarks/gb10-sky-beta-course-v83/README.md",
+    },
     "teammate_ppo": {
         "kind": "rl_policy", "status": "numpy_rollout_reproduced_px4_flight_pending",
         "source": "https://github.com/jakefromstatefarm00/dronehacks2026",
@@ -16,17 +20,20 @@ STRATEGIES = {
         "checkpoint": "dronehacks_rl.zip:runs/ppo/policy.onnx",
     },
     "openfly": {
-        "kind": "vla", "status": "upstream_available_adapter_pending",
+        "kind": "vla", "status": "offline_inference_measured_flight_adapter_unqualified",
+        "status_as_of": "2026-11-05",
         "source": "https://github.com/SHAILAB-IPEC/OpenFly-Platform",
         "checkpoint": "IPEC-COMMUNITY/openfly-agent-7b",
     },
     "aerovla": {
-        "kind": "vla", "status": "upstream_available_adapter_pending",
+        "kind": "vla", "status": "offline_adapter_implemented_base_not_staged",
+        "status_as_of": "2026-11-05",
         "source": "https://github.com/XuPeng23/AeroVLA",
         "checkpoint": "XuPeng23/AerialVLA (adapter; matching base also required)",
     },
     "openfly_v2": {
         "kind": "vla", "status": "blocked_unreleased_code_and_weights",
+        "status_as_of": "2026-11-05",
         "source": "https://github.com/Ideal-ljl/AeroBrain",
         "checkpoint": None,
     },
