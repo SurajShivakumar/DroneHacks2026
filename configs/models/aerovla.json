@@ -1,0 +1,16 @@
+{
+  "strategy": "aerovla",
+  "source": "https://github.com/XuPeng23/AeroVLA",
+  "source_revision": "3ba3e244262cb5ff6bcf4c24755d3b4bb19a1d27",
+  "checkpoint": "XuPeng23/AerialVLA",
+  "checkpoint_revision": "196f2f3253b69df6e90ac10b6ae041c7b3a9569e",
+  "adapter_subdirectory": "aero_vla",
+  "adapter_safetensors_bytes": 462655064,
+  "base": "openvla/openvla-7b",
+  "base_revision": "47a0ec7fc4ec123775a391911046cf33cf9ed83f",
+  "input_contract": "independent front and downward RGB, front then down stacked as resized224x448 mosaic; fuzzy target instruction",
+  "native_actions": "three text bins0..99: forward0..5, down-5..5, yaw-1.1..1.1; LAND or nearzero numeric stop heuristic",
+  "hardware_compatibility": "current Sky Beta has no downward RGB; extra-camera simulation diagnostic only",
+  "native_px4_adapter_qualified": false,
+  "finetuned_here": false
+}

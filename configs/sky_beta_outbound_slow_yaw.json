@@ -1,0 +1,47 @@
+{
+  "mission": {
+    "task": "trajectory",
+    "takeoff_m": 0.5,
+    "climb_mps": 0.25,
+    "hold_s": 2.0,
+    "max_takeoff_xy_m": 0.03,
+    "max_heading_error_rad": 0.1,
+    "idle_health_wall_s": 30.0,
+    "disarmed_preflight_wall_s": 30.0,
+    "max_wall_s": 480.0,
+    "max_leg_sim_s": 180.0,
+    "return_enabled": false
+  },
+  "trajectory_time_scale": 8.0,
+  "tracking_max_error_m": 0.04,
+  "tracking_pause_error_m": 0.025,
+  "takeoff_agl_m": 1.0,
+  "launch_xy_m": [
+    -2.515,
+    0.914
+  ],
+  "launch_heading_course_rad": 1.5707963267948966,
+  "launch_placement_reviewed": true,
+  "range_topic": "/range/scan",
+  "range_frame": "sky_beta_estimated/base_link/down_range",
+  "range_offset_frd_m": [
+    0.10255489399583753,
+    0.0001513373164526815,
+    -0.009161136727113633
+  ],
+  "range_axis_frd": [
+    0.0,
+    0.0,
+    1.0
+  ],
+  "pad_center_xy_m": [
+    -2.042,
+    -0.792
+  ],
+  "pad_outer_radius_m": 0.762,
+  "status": "prepared_for_user_requested_simulated_course_run",
+  "notes": "Separate conservative smoothing trial after the 4x abrupt-stop failure. Same CAD, estimated dynamics, net appearance, 4 cm deviation guard and native telemetry limits. 8x reference duration, rate fraction slews at 0.5/s, camera yaw looks 1 reference second ahead. A tracking-only failure with fresh authority requests native Land and stays a failed course attempt. No return before independent outbound verification. Local projection synchronizes measured route progress; the 4 cm hard guard checks geometric distance to the reviewed path, while along-path lag only scales speed. Checkpoint ordering remains independently observed. Conservative yaw trial: limit camera yaw command to 0.2 rad/s, with 0.5 s path preview, to reduce turn-induced tracking transients. No PX4 gains or position limits are changed.",
+  "tracking_rate_slew_per_s": 0.5,
+  "heading_lookahead_s": 0.5,
+  "max_yaw_rate_rad_s": 0.2
+}

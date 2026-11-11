@@ -1,0 +1,48 @@
+{
+    "mission": {
+        "task": "trajectory",
+        "takeoff_m": 0.5,
+        "climb_mps": 0.25,
+        "hold_s": 2.0,
+        "max_takeoff_xy_m": 0.03,
+        "max_heading_error_rad": 0.1,
+        "idle_health_wall_s": 30.0,
+        "disarmed_preflight_wall_s": 30.0,
+        "max_wall_s": 900,
+        "max_leg_sim_s": 400,
+        "return_enabled": false
+    },
+    "trajectory_time_scale": 1,
+    "tracking_max_error_m": 0.04,
+    "tracking_pause_error_m": 0.025,
+    "takeoff_agl_m": 0.9,
+    "launch_xy_m": [
+        -2.515,
+        0.914
+    ],
+    "launch_heading_course_rad": 1.5707963267948966,
+    "launch_placement_reviewed": true,
+    "range_topic": "/range/scan",
+    "range_frame": "sky_beta_estimated/base_link/down_range",
+    "range_offset_frd_m": [
+        0.10255489399583753,
+        0.0001513373164526815,
+        -0.009161136727113633
+    ],
+    "range_axis_frd": [
+        0.0,
+        0.0,
+        1.0
+    ],
+    "pad_center_xy_m": [
+        -2.042,
+        -0.792
+    ],
+    "pad_outer_radius_m": 0.762,
+    "status": "continuous_v1_sub180_attempt",
+    "notes": "Continuous-motion reference artifacts/published-course-continuous-v1 (93.75 s): robust-corner path geometry unchanged in space, headings by DP over published-geometry view score (turns spread over motion, <=2 rad/m), speed profile v<=0.45 m/s, a<=0.25, a_lat<=0.3, yaw rate<=0.25 rad/s; tube box forced to tube axis. 8 cm mesh screen and 9-gate audit pass. Same scene and guards as v40; yaw command limiter 0.4 (above the 0.25 reference peak).",
+    "tracking_rate_slew_per_s": 0.5,
+    "heading_lookahead_s": 0,
+    "use_reference_yaw": true,
+    "max_yaw_rate_rad_s": 0.4
+}

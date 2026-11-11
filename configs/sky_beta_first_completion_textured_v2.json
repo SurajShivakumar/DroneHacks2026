@@ -1,0 +1,48 @@
+{
+    "mission": {
+        "task": "trajectory",
+        "takeoff_m": 0.5,
+        "climb_mps": 0.25,
+        "hold_s": 2.0,
+        "max_takeoff_xy_m": 0.03,
+        "max_heading_error_rad": 0.1,
+        "idle_health_wall_s": 30.0,
+        "disarmed_preflight_wall_s": 30.0,
+        "max_wall_s": 1050,
+        "max_leg_sim_s": 700,
+        "return_enabled": false
+    },
+    "trajectory_time_scale": 1,
+    "tracking_max_error_m": 0.04,
+    "tracking_pause_error_m": 0.025,
+    "takeoff_agl_m": 0.9,
+    "launch_xy_m": [
+        -2.515,
+        0.914
+    ],
+    "launch_heading_course_rad": 1.5707963267948966,
+    "launch_placement_reviewed": true,
+    "range_topic": "/range/scan",
+    "range_frame": "sky_beta_estimated/base_link/down_range",
+    "range_offset_frd_m": [
+        0.10255489399583753,
+        0.0001513373164526815,
+        -0.009161136727113633
+    ],
+    "range_axis_frd": [
+        0.0,
+        0.0,
+        1.0
+    ],
+    "pad_center_xy_m": [
+        -2.042,
+        -0.792
+    ],
+    "pad_outer_radius_m": 0.762,
+    "status": "slow_full_course_proof_textured_walls_perception_aware_headings",
+    "notes": "User priority: one proper full takeoff/checkpoints/landing run despite speed. Robust-corner positions unchanged (8cm mesh screen and 9 ordered whole-envelope gates re-run and pass). Scene: estimated textured wall/floor appearance (v27 generator) stacked under the estimated exterior arena background; course collisions/visual geometry unchanged, appearance is an unmeasured assumption. Headings chosen from published geometry to keep textured surfaces in view and avoid net nearer than 1.2 m (v33/v37 evidence). 13 stationary turns at <=0.15 rad/s peak; 475.3 s reference (final 0.4 m into each turn stop slowed 3x after v38 overshoot). Leg/wall supervisor bounds raised only for the slow diagnostic; official 180 s limit unchanged. All tracking, VIO feature, freshness, reset, authority and preflight guards unchanged except the one-physics-step clock-lead tolerance and no-/clock startup wait (both race fixes, tested).",
+    "tracking_rate_slew_per_s": 0.5,
+    "heading_lookahead_s": 0,
+    "use_reference_yaw": true,
+    "max_yaw_rate_rad_s": 0.2
+}

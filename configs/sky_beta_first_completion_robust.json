@@ -1,0 +1,48 @@
+{
+    "mission":  {
+                    "task":  "trajectory",
+                    "takeoff_m":  0.5,
+                    "climb_mps":  0.25,
+                    "hold_s":  2.0,
+                    "max_takeoff_xy_m":  0.03,
+                    "max_heading_error_rad":  0.1,
+                    "idle_health_wall_s":  30.0,
+                    "disarmed_preflight_wall_s":  30.0,
+                    "max_wall_s":  540,
+                    "max_leg_sim_s":  360,
+                    "return_enabled":  false
+                },
+    "trajectory_time_scale":  1,
+    "tracking_max_error_m":  0.04,
+    "tracking_pause_error_m":  0.025,
+    "takeoff_agl_m":  0.9,
+    "launch_xy_m":  [
+                        -2.515,
+                        0.914
+                    ],
+    "launch_heading_course_rad":  1.5707963267948966,
+    "launch_placement_reviewed":  true,
+    "range_topic":  "/range/scan",
+    "range_frame":  "sky_beta_estimated/base_link/down_range",
+    "range_offset_frd_m":  [
+                               0.10255489399583753,
+                               0.0001513373164526815,
+                               -0.009161136727113633
+                           ],
+    "range_axis_frd":  [
+                           0.0,
+                           0.0,
+                           1.0
+                       ],
+    "pad_center_xy_m":  [
+                            -2.042,
+                            -0.792
+                        ],
+    "pad_outer_radius_m":  0.762,
+    "status":  "slow_full_course_proof_with_robust_diagonal_corners",
+    "notes":  "User priority is one proper full takeoff/checkpoints/landing run despite speed.177.393s native-time reference with gate-normal Bezier corners, stops at splices/gates and peak0.2644m/s. Unchanged strict mesh screen and all9 whole-envelope gate planes pass with8cm extra padding. Original640x400/400-feature OpenVINS, estimated exterior-background scenario, no shadow filter. All4cm tracking,2.5cm pause, freshness, reset, authority and preflight guards unchanged. No return/RL/VLA work.360sim-second leg and540wall-second supervisor permit slow completion proof; official180s time limit remains unchanged and any overrun must be reported.",
+    "tracking_rate_slew_per_s":  0.5,
+    "heading_lookahead_s":  0,
+    "use_reference_yaw":  true,
+    "max_yaw_rate_rad_s":  0.2
+}

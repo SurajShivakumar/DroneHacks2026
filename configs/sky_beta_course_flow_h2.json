@@ -1,0 +1,51 @@
+{
+    "mission": {
+        "task": "trajectory",
+        "takeoff_m": 0.5,
+        "climb_mps": 0.5,
+        "hold_s": 0.5,
+        "max_takeoff_xy_m": 0.03,
+        "max_heading_error_rad": 0.1,
+        "idle_health_wall_s": 30.0,
+        "disarmed_preflight_wall_s": 30.0,
+        "max_wall_s": 900,
+        "max_leg_sim_s": 400,
+        "return_enabled": false
+    },
+    "trajectory_time_scale": 1,
+    "tracking_max_error_m": 0.04,
+    "tracking_pause_error_m": 0.025,
+    "takeoff_agl_m": 0.9,
+    "launch_xy_m": [
+        -2.515,
+        0.914
+    ],
+    "launch_heading_course_rad": 1.5707963267948966,
+    "launch_placement_reviewed": true,
+    "range_topic": "/range/scan",
+    "range_frame": "sky_beta_estimated/base_link/down_range",
+    "range_offset_frd_m": [
+        0.10255489399583753,
+        0.0001513373164526815,
+        -0.009161136727113633
+    ],
+    "range_axis_frd": [
+        0.0,
+        0.0,
+        1.0
+    ],
+    "pad_center_xy_m": [
+        -2.042,
+        -0.792
+    ],
+    "pad_outer_radius_m": 0.762,
+    "status": "flow_h2_speed_series",
+    "notes": "artifacts/published-course-flow-h2: image-flow-limited reference (median translational flow capped, heading DP flow penalty, strong start-turn cost); 8 cm mesh screen + 9-gate audit pass. Tracking clock lag pause 10 cm (cross-track pause 2.5 cm / abort 4 cm unchanged). Takeoff climb 0.5 m/s, hold 0.5 s (cap raised to 0.6 m/s on team request; XY/heading envelope unchanged). Feedforward on. Launch heading pinned to the sideways textured-wall view (-90 deg start turn, as in completed v51/v55); v63-v65 lost VIO in a 146 deg start turn.",
+    "tracking_rate_slew_per_s": 0.5,
+    "heading_lookahead_s": 0,
+    "use_reference_yaw": true,
+    "max_yaw_rate_rad_s": 0.5,
+    "acceleration_feedforward": true,
+    "yawspeed_feedforward": true,
+    "tracking_lag_pause_m": 0.1
+}

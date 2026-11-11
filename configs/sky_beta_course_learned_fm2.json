@@ -1,0 +1,51 @@
+{
+    "mission": {
+        "task": "trajectory",
+        "takeoff_m": 0.5,
+        "climb_mps": 0.35,
+        "hold_s": 1.0,
+        "max_takeoff_xy_m": 0.03,
+        "max_heading_error_rad": 0.1,
+        "idle_health_wall_s": 30.0,
+        "disarmed_preflight_wall_s": 30.0,
+        "max_wall_s": 900,
+        "max_leg_sim_s": 400,
+        "return_enabled": false
+    },
+    "trajectory_time_scale": 1,
+    "tracking_max_error_m": 0.04,
+    "tracking_pause_error_m": 0.025,
+    "takeoff_agl_m": 0.9,
+    "launch_xy_m": [
+        -2.515,
+        0.914
+    ],
+    "launch_heading_course_rad": 1.5707963267948966,
+    "launch_placement_reviewed": true,
+    "range_topic": "/range/scan",
+    "range_frame": "sky_beta_estimated/base_link/down_range",
+    "range_offset_frd_m": [
+        0.10255489399583753,
+        0.0001513373164526815,
+        -0.009161136727113633
+    ],
+    "range_axis_frd": [
+        0.0,
+        0.0,
+        1.0
+    ],
+    "pad_center_xy_m": [
+        -2.042,
+        -0.792
+    ],
+    "pad_outer_radius_m": 0.762,
+    "status": "learned_fm2_failure_map_reaimed_start",
+    "notes": "artifacts/published-course-learned-fm2: fm1 (failure-map timing) plus the first 1.4 m re-aimed to -65 deg course yaw: the learned view model (v2) predicts ~10 OpenVINS features for k12's -5 deg there vs ~80 at -65 deg, and 11 of 40 deaths happened in that stretch (start turn and the s=1.1 m kink). k12 headings from 1.4 m on; timing from the failure map (tools/failure_map.py over 50 flights): per 25 cm bin the speed is the fastest any completed flight survived there, and 0.8x the slowest speed-related death (never below the k08/k12 reliable max) within 0.5 m of a death; v<=0.45, a<=0.25, yaw<=0.25 rad/s (every death cluster had truth yaw rates 0.38-0.67 rad/s; the 3/3 k12 flights never exceeded 0.3); start turn trapezoid 7.7 s instead of 11.6 s smoothstep; soft 0.1 m/s kink passes. 8 cm screen + 9 gates pass. Guards unchanged.",
+    "tracking_rate_slew_per_s": 0.5,
+    "heading_lookahead_s": 0,
+    "use_reference_yaw": true,
+    "max_yaw_rate_rad_s": 0.4,
+    "acceleration_feedforward": true,
+    "yawspeed_feedforward": true,
+    "tracking_lag_pause_m": 0.1
+}

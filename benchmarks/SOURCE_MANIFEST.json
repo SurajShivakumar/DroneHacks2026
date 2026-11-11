@@ -1,0 +1,42 @@
+[
+  {
+    "path": "benchmarks/gb10-sky-beta-course-v55/README.md",
+    "local_source": "artifacts/gb10-sky-beta-course-v55/README.md",
+    "sha256": "ef47da33606c5fa950a87240c49fc731e675b4fede25afc18d34cf72df918d5f"
+  },
+  {
+    "path": "benchmarks/gb10-sky-beta-course-v55/evaluation/truth-evaluation.json",
+    "local_source": "artifacts/gb10-sky-beta-course-v55/evaluation/truth-evaluation.json",
+    "sha256": "f5becf4f2b1971274c8f84ded87c5253dc9cae66a9b301390795c1961476e51c"
+  },
+  {
+    "path": "benchmarks/gb10-sky-beta-course-v55/evaluation/truth-gates-tilt-aware.json",
+    "local_source": "artifacts/gb10-sky-beta-course-v55/evaluation/truth-gates-tilt-aware.json",
+    "sha256": "c5d7be18528234ee826a33e404f3883bba4a15ad3dbb5b3f5b81ce4ac990bb34"
+  },
+  {
+    "path": "benchmarks/gb10-sky-beta-course-v83/README.md",
+    "local_source": "artifacts/gb10-sky-beta-course-v83/README.md",
+    "sha256": "7c5637f62a45fca6fcf2efe94b229ce48a7ea9b01b4b65bd9229aed3685ac199"
+  },
+  {
+    "path": "benchmarks/gb10-sky-beta-course-v83/evaluation/truth-evaluation.json",
+    "local_source": "artifacts/gb10-sky-beta-course-v83/evaluation/truth-evaluation.json",
+    "sha256": "68c50af20d5970a36d9ce7809ea6a338a73c2f1a685b0416a45a6abd2860be57"
+  },
+  {
+    "path": "benchmarks/gb10-sky-beta-course-v83/evaluation/truth-gates-tilt-aware.json",
+    "local_source": "artifacts/gb10-sky-beta-course-v83/evaluation/truth-gates-tilt-aware.json",
+    "sha256": "3628646294078f12e81820b25d7d3881d73f091ae774716ca6510abff9ebea78"
+  },
+  {
+    "path": "benchmarks/gb10-sky-beta-course-v117/README.md",
+    "local_source": "artifacts/gb10-sky-beta-course-v117/README.md",
+    "sha256": "d699d935dac76ba934077c899f928fbf48a5f8b5cf2ab0a3a94dec6104736b9b"
+  },
+  {
+    "path": "benchmarks/cuvslam-profile-comparison-v1/README.md",
+    "local_source": "artifacts/cuvslam-profile-comparison-v1/README.md",
+    "sha256": "1024ac43d6363fb3fe56310f1fcf9c65f49927ca25b2594c06735f63e2c92636"
+  }
+]

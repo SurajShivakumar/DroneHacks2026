@@ -1,0 +1,84 @@
+{
+  "kind": "independent_truth_evaluation_not_official_score",
+  "input_sha256": {
+    "artifacts\\sky-beta-model-v3\\course-sky-beta.xml": "1db269d27278e28eb07298bd14efeffc1b5f269cff0dbc12681332a827c33626",
+    "artifacts\\gb10-sky-beta-course-v55\\truth-poses.csv": "3e27854b3cd0845cc92db7aa4f0af89b0ba0e6f1e13b08136cf7b3985f4bd170",
+    "artifacts\\gb10-sky-beta-course-v55\\course-mission.json": "f06f37cba73cf397934ab5ede143222963adff5ba7e4351796e2cf0ec987ece0",
+    "artifacts\\sky-beta-estimated-v4\\airframe-contract.json": "96e47264f67a85c5aba5eacef8b9deb1b4ac53a4b009ab3c04e1e2e70310c70d"
+  },
+  "arm_sim_s": 112.399982016,
+  "disarm_sim_s": 231.958296,
+  "arm_to_disarm_s": 119.558313984,
+  "airborne_navigation_interval_sim_s": [
+    126.091646492,
+    227.137463658
+  ],
+  "envelope": {
+    "radius_m": 0.27994436200624684,
+    "half_height_m": 0.13
+  },
+  "structure_contacts": {},
+  "structure_contact_free": true,
+  "floor_contacts": {
+    "collision_g29_Floor_20_x_20_ft": {
+      "samples": 1370,
+      "first_s": 112.399982016,
+      "last_s": 231.95498201589126,
+      "max_penetration_m": 0.0656241679823736,
+      "airborne_samples": 0
+    }
+  },
+  "floor_contact_during_navigation": false,
+  "landing": {
+    "final_xy_m": [
+      -2.014378598336207,
+      -0.8485915195138864
+    ],
+    "pad_center_xy_m": [
+      -2.042,
+      -0.792
+    ],
+    "center_offset_m": 0.06297254886665428,
+    "pad_outer_radius_m": 0.762,
+    "center_inside_outer_ring": true,
+    "whole_envelope_inside_outer_ring": true
+  },
+  "gate_events_onboard_estimator": [
+    {
+      "gate": "z1_corner1",
+      "source_sim_s": 141.087477
+    },
+    {
+      "gate": "z1_corner2",
+      "source_sim_s": 151.604142
+    },
+    {
+      "gate": "z1_corner3",
+      "source_sim_s": 165.77914
+    },
+    {
+      "gate": "z1_corner4",
+      "source_sim_s": 177.120804
+    },
+    {
+      "gate": "z1_corner5",
+      "source_sim_s": 183.654137
+    },
+    {
+      "gate": "z1_end",
+      "source_sim_s": 190.570802
+    },
+    {
+      "gate": "tube_in",
+      "source_sim_s": 200.929134
+    },
+    {
+      "gate": "tube_out",
+      "source_sim_s": 206.2958
+    },
+    {
+      "gate": "window",
+      "source_sim_s": 217.687465
+    }
+  ]
+}

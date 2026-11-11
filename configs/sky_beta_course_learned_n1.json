@@ -1,0 +1,51 @@
+{
+    "mission": {
+        "task": "trajectory",
+        "takeoff_m": 0.5,
+        "climb_mps": 0.35,
+        "hold_s": 1.0,
+        "max_takeoff_xy_m": 0.03,
+        "max_heading_error_rad": 0.1,
+        "idle_health_wall_s": 30.0,
+        "disarmed_preflight_wall_s": 30.0,
+        "max_wall_s": 900,
+        "max_leg_sim_s": 400,
+        "return_enabled": false
+    },
+    "trajectory_time_scale": 1,
+    "tracking_max_error_m": 0.04,
+    "tracking_pause_error_m": 0.025,
+    "takeoff_agl_m": 0.9,
+    "launch_xy_m": [
+        -2.515,
+        0.914
+    ],
+    "launch_heading_course_rad": 1.5707963267948966,
+    "launch_placement_reviewed": true,
+    "range_topic": "/range/scan",
+    "range_frame": "sky_beta_estimated/base_link/down_range",
+    "range_offset_frd_m": [
+        0.10255489399583753,
+        0.0001513373164526815,
+        -0.009161136727113633
+    ],
+    "range_axis_frd": [
+        0.0,
+        0.0,
+        1.0
+    ],
+    "pad_center_xy_m": [
+        -2.042,
+        -0.792
+    ],
+    "pad_outer_radius_m": 0.762,
+    "status": "learned_n1",
+    "notes": "artifacts/published-course-learned-n1: corridor path; headings and per-point speed caps from the learned feature-count model (artifacts/view-model-v2 (37 flights incl. v72-v77 window-approach failures), fit on 32 flights, run-held-out R2 0.70 / AUC 0.95 for <15 features); no start turn; 1.5 s start hold; image-flow cap 16 px. 8 cm screen + 9 gates pass. Lag pause 10 cm, takeoff 0.35 m/s / 1 s hold (v72 exceeded the 3 cm takeoff envelope at 0.5 m/s), feedforward on. VIO config v2. Guards unchanged. Lateral accel 0.25, along 0.4 m/s^2 (v73 cut the 0.27 m corner1 radius at 0.6).",
+    "tracking_rate_slew_per_s": 0.5,
+    "heading_lookahead_s": 0,
+    "use_reference_yaw": true,
+    "max_yaw_rate_rad_s": 0.5,
+    "acceleration_feedforward": true,
+    "yawspeed_feedforward": true,
+    "tracking_lag_pause_m": 0.1
+}

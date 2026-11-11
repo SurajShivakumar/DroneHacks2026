@@ -1,0 +1,75 @@
+{
+  "ordered_planes_cleared": true,
+  "events": [
+    {
+      "gate": "z1_corner1",
+      "source_s": 145.87497666,
+      "full_envelope_clearance": true,
+      "min_lateral_margin_m": 0.09449885248273482,
+      "min_vertical_margin_m": 0.11522583535398587
+    },
+    {
+      "gate": "z1_corner2",
+      "source_s": 152.983308856,
+      "full_envelope_clearance": true,
+      "min_lateral_margin_m": 0.10914512726487285,
+      "min_vertical_margin_m": 0.10935664697372616
+    },
+    {
+      "gate": "z1_corner3",
+      "source_s": 167.12497326,
+      "full_envelope_clearance": true,
+      "min_lateral_margin_m": 0.10635009520931665,
+      "min_vertical_margin_m": 0.1081115768435868
+    },
+    {
+      "gate": "z1_corner4",
+      "source_s": 178.758304732,
+      "full_envelope_clearance": true,
+      "min_lateral_margin_m": 0.10749042110912443,
+      "min_vertical_margin_m": 0.10312930383709343
+    },
+    {
+      "gate": "z1_corner5",
+      "source_s": 187.533303328,
+      "full_envelope_clearance": true,
+      "min_lateral_margin_m": 0.09519533649867823,
+      "min_vertical_margin_m": 0.09977206596917748
+    },
+    {
+      "gate": "z1_end",
+      "source_s": 192.72913583,
+      "full_envelope_clearance": true,
+      "min_lateral_margin_m": 0.08627790800543289,
+      "min_vertical_margin_m": 0.10340186649877386
+    },
+    {
+      "gate": "tube_in",
+      "source_s": 201.974967684,
+      "full_envelope_clearance": true,
+      "min_lateral_margin_m": 0.37671967281753926,
+      "min_vertical_margin_m": 0.6658600969916344
+    },
+    {
+      "gate": "tube_out",
+      "source_s": 207.649966776,
+      "full_envelope_clearance": true,
+      "min_lateral_margin_m": 0.35006387166616376,
+      "min_vertical_margin_m": 0.6669707039642854
+    },
+    {
+      "gate": "window",
+      "source_s": 219.358298236,
+      "full_envelope_clearance": true,
+      "min_lateral_margin_m": 0.14204475443984527,
+      "min_vertical_margin_m": 0.19193648903675942
+    }
+  ],
+  "kind": "tilt_aware_truth_gate_audit_not_official_score",
+  "max_tilt_deg": 2.9267649621550573,
+  "input_sha256": {
+    "artifacts\\gb10-sky-beta-course-v55\\truth-poses.csv": "3e27854b3cd0845cc92db7aa4f0af89b0ba0e6f1e13b08136cf7b3985f4bd170",
+    "artifacts\\sky-beta-estimated-v4\\airframe-contract.json": "96e47264f67a85c5aba5eacef8b9deb1b4ac53a4b009ab3c04e1e2e70310c70d",
+    "C:\\Users\\Suraj\\Documents\\Projects\\DroneHacks 2026\\tools\\evaluate_flight_truth.py": "5ffe6d73dee60f333fef714c5a5fd5ee7a01af2798043ff65c8c359da16852cd"
+  }
+}

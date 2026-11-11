@@ -1,0 +1,10 @@
+{
+  "strategy": "openfly_v2",
+  "source": "https://github.com/Ideal-ljl/AeroBrain",
+  "checked_date": "2026-11-03",
+  "status": "blocked_unreleased_code_and_weights",
+  "checkpoint": null,
+  "evidence": "Repository contains assets and README only; Release status says code, model checkpoints, usage instructions coming soon.",
+  "finetuned_here": false,
+  "native_px4_adapter_qualified": false
+}

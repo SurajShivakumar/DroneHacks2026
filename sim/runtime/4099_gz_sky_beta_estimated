@@ -1,0 +1,14 @@
+#!/bin/sh
+# @name Sky Beta CAD, explicitly estimated propulsion (simulation only)
+# @type Quadrotor x
+# @class Copter
+#
+# Keep generic PX4 multicopter/controller defaults. CAD rotor geometry, sensor
+# offsets, thrust linearization and hover fraction are provided by the reviewed
+# airframe contract at boot. Set physical ESC minimum after the stock defaults:
+# the stock x500 profile otherwise overwrites a value equal to compiled zero.
+. ${R}etc/init.d-posix/airframes/4001_gz_x500
+param set SIM_GZ_EC_MIN1 0
+param set SIM_GZ_EC_MIN2 0
+param set SIM_GZ_EC_MIN3 0
+param set SIM_GZ_EC_MIN4 0

@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "kind": "explicit_estimates_authorized_by_team_not_hardware_measurements",
+  "propeller": {"diameter_m": 0.1778, "pitch_m": 0.0889, "blades": 3, "mass_kg_each": 0.006, "thickness_m": 0.003, "plane_below_shaft_tip_m": 0.005},
+  "motor": {
+    "armed_idle_speed_rad_s": 150.0,
+    "max_speed_rad_s": 1500.0,
+    "max_thrust_N_each": 10.0,
+    "reaction_torque_per_thrust_m": 0.012,
+    "rise_time_constant_s": 0.035,
+    "fall_time_constant_s": 0.05,
+    "rotor_drag_coefficient": 0.00004,
+    "rolling_moment_coefficient": 0.000001,
+    "spin_pattern": ["ccw", "ccw", "cw", "cw"]
+  },
+  "additional_components": [
+    {"name": "estimated wiring/connectors", "mass_kg": 0.035, "com_cad_flu_m": [0.0, 0.0, 0.06], "box_size_m": [0.1, 0.08, 0.04]},
+    {"name": "rangefinder 2.4g plus estimated bracket", "mass_kg": 0.005, "com_cad_flu_m": [0.09, 0.0, 0.075], "box_size_m": [0.015, 0.015, 0.006]}
+  ],
+  "camera": {"stereo_baseline_m": 0.075, "hfov_rad": 1.3962634, "width": 640, "height": 400, "rate_hz": 15},
+  "assumption_basis": {
+    "propeller": "7-inch tri-blade is a working estimate for the 2807/1500KV/4S class, not identified actual hardware.",
+    "thrust": "10 N/rotor at 1500 rad/s is a conservative working estimate; a different-brand Hobbywing 2807/1500KV peer chart supports the order of magnitude, not the actual YSIDO curve.",
+    "peer_chart": "https://www.hobbywing.com/en/uploads/file/20251117/5a28abc3f6f28d186a75261dfa3f21a3.pdf",
+    "lag_drag_torque": "Explicit engineering estimates; qualify sensitivity, do not present as measured.",
+    "armed_idle": "Estimated 150 rad/s spinning idle, matching the pinned native Gazebo ESC convention. Disarmed output remains zero. The prior zero armed minimum left two rotors stopped during spool-up; actual ESC armed flags 0x05 triggered native failure detection. No safety check is disabled.",
+    "sensors": "Camera front plane/baseline and Pixhawk enclosure COM are virtual mounting estimates. Generate virtual calibration from the actual rendered CameraInfo and SDF. Rangefinder placement is estimated below the camera, clear of the lower plates."
+  },
+  "sensitivity_variants": {
+    "mass_scale": [0.9, 1.0, 1.1],
+    "max_thrust_scale": [0.75, 1.0, 1.25],
+    "lag_scale": [0.7, 1.0, 1.5],
+    "propeller_diameter_m": [0.1524, 0.1778, 0.2032]
+  },
+  "hardware_qualified": false
+}

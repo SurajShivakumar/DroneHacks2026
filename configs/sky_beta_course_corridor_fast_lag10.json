@@ -1,0 +1,51 @@
+{
+    "mission": {
+        "task": "trajectory",
+        "takeoff_m": 0.5,
+        "climb_mps": 0.25,
+        "hold_s": 2.0,
+        "max_takeoff_xy_m": 0.03,
+        "max_heading_error_rad": 0.1,
+        "idle_health_wall_s": 30.0,
+        "disarmed_preflight_wall_s": 30.0,
+        "max_wall_s": 900,
+        "max_leg_sim_s": 400,
+        "return_enabled": false
+    },
+    "trajectory_time_scale": 1,
+    "tracking_max_error_m": 0.04,
+    "tracking_pause_error_m": 0.025,
+    "takeoff_agl_m": 0.9,
+    "launch_xy_m": [
+        -2.515,
+        0.914
+    ],
+    "launch_heading_course_rad": 1.5707963267948966,
+    "launch_placement_reviewed": true,
+    "range_topic": "/range/scan",
+    "range_frame": "sky_beta_estimated/base_link/down_range",
+    "range_offset_frd_m": [
+        0.10255489399583753,
+        0.0001513373164526815,
+        -0.009161136727113633
+    ],
+    "range_axis_frd": [
+        0.0,
+        0.0,
+        1.0
+    ],
+    "pad_center_xy_m": [
+        -2.042,
+        -0.792
+    ],
+    "pad_outer_radius_m": 0.762,
+    "status": "corridor_fast_lag10",
+    "notes": "artifacts/published-course-corridor-v1/fast: published-map corridor elastic-band path (tools/plan_corridor_path.py; 16.85 m, 0 kinks, min turn radius 0.27 m) retimed with prepare_fast_reference (36.19 s, same retime settings as f5). 8 cm mesh screen + 9-gate audit pass. Feedforward on; guards unchanged. Tracking clock: along-track lag throttles only beyond 10 cm (v55 lost 51 of 65 s to ~2 cm lag throttling); cross-track pause 2.5 cm and abort 4 cm unchanged.",
+    "tracking_rate_slew_per_s": 0.5,
+    "heading_lookahead_s": 0,
+    "use_reference_yaw": true,
+    "max_yaw_rate_rad_s": 0.5,
+    "acceleration_feedforward": true,
+    "yawspeed_feedforward": true,
+    "tracking_lag_pause_m": 0.1
+}

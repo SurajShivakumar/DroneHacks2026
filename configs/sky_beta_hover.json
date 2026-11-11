@@ -1,0 +1,18 @@
+{
+  "mission": {
+    "task": "hover",
+    "takeoff_m": 0.5,
+    "climb_mps": 0.25,
+    "hold_s": 2.0,
+    "max_takeoff_xy_m": 0.03,
+    "max_heading_error_rad": 0.1,
+    "idle_health_wall_s": 30.0,
+    "disarmed_preflight_wall_s": 30.0,
+    "max_wall_s": 240.0,
+    "max_leg_sim_s": 30.0,
+    "return_enabled": false
+  },
+  "status": "prepared_for_user_requested_simulated_launch_fly_land",
+  "airframe": "sky_beta_estimated",
+  "notes": "User authorized estimates for missing dynamics. Use the audited 4099 Sky Beta contract and fresh native telemetry gates. Estimated SITL qualification only; no hardware qualification is inherited."
+}

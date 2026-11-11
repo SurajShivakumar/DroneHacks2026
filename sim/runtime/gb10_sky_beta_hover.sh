@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# Sim-only first qualification within the user's requested launch/fly/land task.
+# Estimated Sky Beta; no hardware flight is authorized by this script.
+set -eo pipefail
+source /opt/ros/jazzy/setup.bash
+source "$HOME/dronehacks-runtime/ros_ws/install/setup.bash"
+source "$HOME/dronehacks-runtime/vio_ws/install/setup.bash"
+cd "$HOME/dronehacks-2026-gb10"
+python3 -m sim.gazebo_smoke --scene artifacts/sky-beta-estimated-v2/observer-fixture-world.sdf \
+    --airframe-contract artifacts/sky-beta-estimated-v2/airframe-contract-4099.json \
+    --px4-model-name sky_beta_estimated --hardware-rendering --record-image --record-topic /camera/observer/image \
+    --with-px4 --external-vision --align-heading --diagnostic-rig --bootstrap-fixture \
+    --ground-station "$HOME/dronehacks-runtime/qgc-v5.1.5/squashfs-root/AppRun" \
+    --vio-config artifacts/sky-beta-vio-calibration-v1/estimator_config.yaml \
+    --mission-settings configs/sky_beta_hover.json --execute-mission \
+    --approval-reference 'Suraj requested a simulated launch/fly/land run and authorized estimated Sky Beta dynamics in this thread' \
+    --output artifacts/gb10-sky-beta-hover-v1

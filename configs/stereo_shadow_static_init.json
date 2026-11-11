@@ -1,0 +1,13 @@
+{
+  "scope": "declared_static_init_diagnostic_not_flight",
+  "initial_body_position_map_m": [-2.515, 0.914, 0.9],
+  "initial_body_yaw_map_rad": 1.5707963267948966,
+  "heading_valid_source_window_s": [0.0, 18.0],
+  "prior_error_xyz_m": [0.3, 0.3, 0.03],
+  "angular_error_rad": 0.02,
+  "floor_z_m": 0.0,
+  "left_frame": "sky_beta_estimated/base_link/left",
+  "right_frame": "sky_beta_estimated/base_link/right",
+  "range_frame": "sky_beta_estimated/base_link/down_range",
+  "note": "Disarmed fixture diagnostic only. Declares public launch mark/north heading and a heading-valid source interval. OpenVINS gravity-up yaw axes are calibrated over at least 0.5s/20 samples with a 0.01rad stability bound before source18s. Translation is not zeroed. No observer poses, flight startup qualification, or automatic origin reset."
+}

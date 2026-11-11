@@ -1,0 +1,15 @@
+{
+  "description": "Synthetic one-dimensional planning example. Not a course route or flight-qualified settings.",
+  "limits": {"cruise": 1.0, "acceleration": 0.5, "braking": 0.5, "lateral": 0.5, "latency": 0.2, "margin": 0.3},
+  "samples": [
+    {"distance": 0.0, "curvature": 0, "free_distance": 3},
+    {"distance": 0.5, "curvature": 0, "free_distance": 3},
+    {"distance": 1.0, "curvature": 0, "free_distance": 3},
+    {"distance": 1.5, "curvature": 0, "free_distance": 3},
+    {"distance": 2.0, "curvature": 4, "free_distance": 3},
+    {"distance": 2.5, "curvature": 0, "free_distance": 3},
+    {"distance": 3.0, "curvature": 0, "free_distance": 3},
+    {"distance": 3.5, "curvature": 0, "free_distance": 3},
+    {"distance": 4.0, "curvature": 0, "free_distance": 3}
+  ]
+}

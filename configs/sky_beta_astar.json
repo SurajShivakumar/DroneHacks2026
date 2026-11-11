@@ -1,0 +1,49 @@
+{
+  "mission": {
+    "task": "trajectory",
+    "takeoff_m": 0.5,
+    "climb_mps": 0.25,
+    "hold_s": 2.0,
+    "max_takeoff_xy_m": 0.03,
+    "max_heading_error_rad": 0.1,
+    "idle_health_wall_s": 30.0,
+    "disarmed_preflight_wall_s": 30.0,
+    "max_wall_s": 510.0,
+    "max_leg_sim_s": 360.0,
+    "return_enabled": false
+  },
+  "trajectory_time_scale": 1.0,
+  "tracking_max_error_m": 0.04,
+  "tracking_pause_error_m": 0.025,
+  "takeoff_agl_m": 0.9,
+  "launch_xy_m": [
+    -2.515,
+    0.914
+  ],
+  "launch_heading_course_rad": 1.5707963267948966,
+  "launch_placement_reviewed": true,
+  "range_topic": "/range/scan",
+  "range_frame": "sky_beta_estimated/base_link/down_range",
+  "range_offset_frd_m": [
+    0.10255489399583753,
+    0.0001513373164526815,
+    -0.009161136727113633
+  ],
+  "range_axis_frd": [
+    0.0,
+    0.0,
+    1.0
+  ],
+  "pad_center_xy_m": [
+    -2.042,
+    -0.792
+  ],
+  "pad_outer_radius_m": 0.762,
+  "status": "prepared_for_user_requested_simulated_course_run",
+  "notes": "Classical A* from published OBJ using teammate collision primitives, 8 cm planning margin, checked shortcuts, fixed 0.9 m altitude and quintic stop/turn/go segments. Explicit reference yaw turns at stationary waypoints, 0.15 rad/s plan / 0.2 rad/s command bound. Cruise 0.25 m/s, acceleration 0.15 m/s2, jerk 0.3 m/s3. 4 cm measured geometric tracking guard remains unchanged. Independent mesh screen passed with 8 cm margin. Estimated net appearance is a separate scenario; no return before independently verified outbound.",
+  "tracking_rate_slew_per_s": 0.5,
+  "heading_lookahead_s": 0.0,
+  "max_yaw_rate_rad_s": 0.2,
+  "use_reference_yaw": true,
+  "max_tilt_rad": 0.15
+}

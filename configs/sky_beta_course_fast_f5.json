@@ -1,0 +1,50 @@
+{
+    "mission": {
+        "task": "trajectory",
+        "takeoff_m": 0.5,
+        "climb_mps": 0.25,
+        "hold_s": 2.0,
+        "max_takeoff_xy_m": 0.03,
+        "max_heading_error_rad": 0.1,
+        "idle_health_wall_s": 30.0,
+        "disarmed_preflight_wall_s": 30.0,
+        "max_wall_s": 900,
+        "max_leg_sim_s": 400,
+        "return_enabled": false
+    },
+    "trajectory_time_scale": 1,
+    "tracking_max_error_m": 0.04,
+    "tracking_pause_error_m": 0.025,
+    "takeoff_agl_m": 0.9,
+    "launch_xy_m": [
+        -2.515,
+        0.914
+    ],
+    "launch_heading_course_rad": 1.5707963267948966,
+    "launch_placement_reviewed": true,
+    "range_topic": "/range/scan",
+    "range_frame": "sky_beta_estimated/base_link/down_range",
+    "range_offset_frd_m": [
+        0.10255489399583753,
+        0.0001513373164526815,
+        -0.009161136727113633
+    ],
+    "range_axis_frd": [
+        0.0,
+        0.0,
+        1.0
+    ],
+    "pad_center_xy_m": [
+        -2.042,
+        -0.792
+    ],
+    "pad_outer_radius_m": 0.762,
+    "status": "fast_f5_speed_ladder",
+    "notes": "artifacts/published-course-fast-f5: v<=1.2 (peak 1.08) m/s, accel<=0.6, yaw<=0.45 rad/s, <=1 rad/m heading change, 40 cm smoothing, no kink stops (39.6 s). Path re-audited (8 cm mesh screen + 9 gates pass); view score min 0.42 (same as v51). Acceleration/yaw-rate feedforward on. All guards unchanged (4 cm abort, 2.5 cm pause, VIO watchdog).",
+    "tracking_rate_slew_per_s": 0.5,
+    "heading_lookahead_s": 0,
+    "use_reference_yaw": true,
+    "max_yaw_rate_rad_s": 0.5,
+    "acceleration_feedforward": true,
+    "yawspeed_feedforward": true
+}

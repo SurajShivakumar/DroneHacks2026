@@ -1,0 +1,19 @@
+{
+  "strategy": "openfly",
+  "source": "https://github.com/SHAILAB-IPEC/OpenFly-Platform",
+  "source_revision": "c075075497a7122bad82f5b76b9be926ad5a81b3",
+  "checkpoint": "IPEC-COMMUNITY/openfly-agent-7b",
+  "checkpoint_revision": "21dcce235f1f2d40fc23c76998051abc5434cc99",
+  "checkpoint_total_bytes": 15086411278,
+  "weight_sha256": {
+    "model-00001-of-00003.safetensors": "a40777127f28bb99a18107c8145057b9ca3762f8e65da5ed67a3bb8bd84b171d",
+    "model-00002-of-00003.safetensors": "e6b9e972ba51d6920403670dd54e0b305f34315a492ce874120792bbd7a8c7a3",
+    "model-00003-of-00003.safetensors": "4a33348f85fc6c25d5f4fef6abb4000593bb2bb5d9b99cfdd9d8869bb04e43c1"
+  },
+  "unnorm_key": "vlnv1",
+  "unnorm_key_reason": "Pinned eval.py uses vlnv1; README example uses different vln_norm key.",
+  "input_contract": "three actual chronological front RGB frames and instruction",
+  "native_actions": "8-vector rounded to discrete macro action; upstream eval uses 3m translations and 30deg turns",
+  "native_px4_adapter_qualified": false,
+  "finetuned_here": false
+}

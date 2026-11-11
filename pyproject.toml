@@ -1,0 +1,14 @@
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+norecursedirs = [".git", ".venv", "artifacts", "checkpoints", "teammate-review", "_archive"]
+markers = [
+    "local_artifacts: requires preserved local simulator outputs; not a portable unit test",
+]
+
+[tool.ruff]
+target-version = "py310"
+extend-exclude = ["artifacts", "checkpoints", "teammate-review", "organizer-skybeta", "_archive", "team", "flight_programs", "tools/flight_review"]
+
+[tool.ruff.lint]
+# Start with correctness checks; avoid reformatting generated/proven flight code.
+select = ["F821", "F822", "F823"]

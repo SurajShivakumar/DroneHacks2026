@@ -1,0 +1,7 @@
+# Versions verified on this laptop; use .venv to isolate additional dependencies.
+mujoco==3.16.0
+numpy==2.3.4
+trimesh==5.1.1
+coacd==1.0.14
+Pillow>=11,<13
+imageio-ffmpeg==0.6.0

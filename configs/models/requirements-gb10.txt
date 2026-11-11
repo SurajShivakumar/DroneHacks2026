@@ -1,0 +1,14 @@
+# Install only after native CUDA torch2.9.1/torchvision0.24.1 from cu130.
+# Keep this isolated from ROS and the project's simulator Python environment.
+torch==2.9.1+cu130
+torchvision==0.24.1
+transformers==4.48.1
+tokenizers==0.21.1
+peft==0.14.0
+accelerate==0.32.1
+timm==0.9.10
+numpy==1.26.4
+Pillow==10.4.0
+huggingface_hub==0.34.4
+sentencepiece==0.2.0
+protobuf==4.25.3

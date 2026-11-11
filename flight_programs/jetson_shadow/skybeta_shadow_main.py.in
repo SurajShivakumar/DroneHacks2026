@@ -1,0 +1,526 @@
+# ============================================================================================
+# Sky Beta I/O with a SHADOW ("fake-armed") mode - jetson_shadow/skybeta_shadow_main.py.in
+# ============================================================================================
+# Topics this program must never publish in shadow (and never PX4 inputs at all, even with --fly).
+FORBIDDEN_PREFIXES = ("/fmu/in", "/skybeta/setpoint")
+VEHICLE_SETPOINT_TOPICS = ("/skybeta/setpoint/pose", "/skybeta/setpoint/twist")
+TERMINAL_STATES = ("DONE", "FAILED", "TAKEN_OVER")
+CMD_LAND = 21
+STALE_LIMITS_S = {"odometry": .5, "skybeta_state": 1.5, "depth": 1.0}   # input watchdog (WARN "stale")
+STALL_WARN_S = .25          # control loop (20 Hz) gap that is logged as a WARN "stall" (> .15 s: journal)
+SLOW_PLAN_WARN_S = 2.0      # one planning step slower than this: WARN (planner process timeout-ish)
+
+
+def is_forbidden_topic(name, shadow=True):
+    """True for a topic this program may not publish: PX4 inputs always, /skybeta/setpoint/* in shadow."""
+    n = "/" + str(name).lstrip("/")
+    return n.startswith(FORBIDDEN_PREFIXES[0]) or (shadow and n.startswith(FORBIDDEN_PREFIXES[1]))
+
+
+class ShadowPilot:
+    """The safety pilot and PX4, PRETENDED (shadow only): nothing here is sent anywhere.
+
+    The mission (unchanged, execute path) asks for Offboard and arm; after ``arm_delay_s`` this says
+    "armed, Offboard active" - on the drone the pilot arms and the flight interface enters Offboard.
+    With ``fake_altitude`` it lifts the odometry by ``lift_m`` after ``altitude_after_s`` in TAKEOFF
+    (the drone is on the bench), so NAVIGATE runs. On LAND it "lands and disarms" after
+    ``disarm_delay_s``."""
+
+    def __init__(self, arm_delay_s=1.0, fake_altitude=False, altitude_after_s=3.0, lift_m=.85,
+                 disarm_delay_s=2.0):
+        self.arm_delay_s, self.fake_altitude, self.altitude_after_s = arm_delay_s, fake_altitude, altitude_after_s
+        self.lift_target_m, self.disarm_delay_s = lift_m, disarm_delay_s
+        self.armed = self.offboard = False
+        self.lift_m = 0.0                      # ENU z added to the real odometry (fake altitude)
+        self.events = []
+        self._want_since = self._takeoff_since = self._land_since = None
+
+    def _event(self, now, what):
+        self.events.append({"t": round(now, 3), "event": what})
+        return what
+
+    def step(self, state, now, command=None):
+        """Advance after a mission tick (``state`` = the mission's state now). Returns a note if
+        something changed (to log), else None."""
+        if state in ("WAIT_OFFBOARD", "WAIT_ARM") and not self.armed:
+            self._want_since = now if self._want_since is None else self._want_since
+            if now - self._want_since >= self.arm_delay_s:
+                self.armed = self.offboard = True
+                return self._event(now, "FAKE ARM + Offboard (shadow: nothing sent; the real vehicle stays disarmed)")
+        if state == "TAKEOFF" and self.fake_altitude and self.lift_m == 0.0:
+            self._takeoff_since = now if self._takeoff_since is None else self._takeoff_since
+            if now - self._takeoff_since >= self.altitude_after_s:
+                self.lift_m = self.lift_target_m
+                return self._event(now, f"FAKE ALTITUDE: odometry z + {self.lift_m:.2f} m (shadow only)")
+        if self.armed and (state == "LAND" or (command is not None and command.command == CMD_LAND)):
+            self._land_since = now if self._land_since is None else self._land_since
+            if now - self._land_since >= self.disarm_delay_s:
+                self.armed = self.offboard = False
+                self.lift_m = 0.0
+                return self._event(now, "FAKE LAND + disarm (shadow)")
+        return None
+
+
+def vehicle_view(tel, real, pilot, state, fly):
+    """Set the arming / mode / landed fields the mission sees.
+
+    FLY: the real vehicle, exactly as the v1 Sky Beta copy (landed = not armed).
+    Shadow: the REAL vehicle while waiting for health (it must be landed and disarmed to start), then -
+    fake-armed - the ShadowPilot. Plan-only shadow (no pilot): the real vehicle."""
+    if fly:
+        armed, offboard, landed = real["armed"], real["offboard_active"], not real["armed"]
+    elif pilot is None or state == "WAIT_HEALTH":
+        armed, offboard, landed = real["armed"], real["offboard_active"], real["landed"]
+    else:
+        armed, offboard, landed = pilot.armed, pilot.offboard, not pilot.armed
+    tel.arming_state = ARMED if armed else DISARMED
+    tel.nav_state = tel.user_intention = NAV_OFFBOARD if offboard else 0
+    tel.landed = bool(landed)
+
+
+def main(argv=None):
+    a = parse_args(argv)
+    fly = bool(a.execute)
+    shadow = not fly
+    if fly and a.fake_altitude:
+        raise SystemExit("--fake-altitude is shadow only")
+    if is_forbidden_topic(a.shadow_topic, shadow=True):
+        raise SystemExit(f"--shadow-topic {a.shadow_topic} is a vehicle topic")
+    build_planner = _build_planner_embedded
+    planner = PlannerProcess(build_planner, (a.planner, a.altitude, a.camera_offset, a.camera_pitch_down_deg,
+                                             a.carrot))     # first: it forks
+    import rclpy
+    from rclpy.callback_groups import MutuallyExclusiveCallbackGroup
+    from rclpy.clock import Clock, ClockType
+    from rclpy.executors import SingleThreadedExecutor
+    from rclpy.node import Node
+    from rclpy.qos import qos_profile_sensor_data
+    from geometry_msgs.msg import PoseStamped
+    from nav_msgs.msg import Odometry
+    from sensor_msgs.msg import CameraInfo, Image
+    from std_msgs.msg import String
+
+    fake = shadow and a.fake_arm
+
+    def new_pilot():
+        return ShadowPilot(a.fake_arm_delay, a.fake_altitude, a.fake_altitude_after,
+                           lift_m=a.altitude - a.launch_body_agl) if fake else None
+
+    def new_mission():
+        # Same mission as the FlyX file. The pilot arms and the interface enters Offboard whenever they
+        # are ready, so there is no acknowledgement timeout; Offboard / arm / Land requests are not sent.
+        # Fake-armed shadow runs the mission's execute path against the ShadowPilot.
+        return Mission(planner, MissionConfig(
+            execute=fly or fake, altitude=a.altitude, carrot_m=a.carrot, launch_xy=tuple(a.launch_xy),
+            launch_heading=a.launch_heading, launch_body_agl=a.launch_body_agl, pad_xy=tuple(planner.pad_xy),
+            ack_timeout_s=1e9))
+
+    pilot, mission = new_pilot(), new_mission()
+    SHADOW_RESTART_S = 5.0          # shadow: a FAILED mission (e.g. a pose blip in STREAM) starts over after this
+    a.output.mkdir(parents=True, exist_ok=False)
+    journal = open(a.output / "journal.jsonl", "w", encoding="utf-8")
+
+    # The journal is written by its own thread: a slow disk must never hold up the setpoint loop.
+    log_queue, log_closed = queue.Queue(), threading.Event()
+
+    def journal_writer():
+        while True:
+            line = log_queue.get()
+            if line is None:
+                return
+            journal.write(line)
+            journal.flush()
+
+    writer = threading.Thread(target=journal_writer, daemon=True)
+    writer.start()
+
+    def log(record):
+        if not log_closed.is_set():           # callbacks may still fire while shutting down
+            log_queue.put(json.dumps(record, default=float) + "\n")
+
+    log({"kind": "start", "mode": "FLY" if fly else "SHADOW", "fake_arm": fake, "fake_altitude": bool(a.fake_altitude),
+         "args": {k: (str(v) if isinstance(v, Path) else v) for k, v in vars(a).items()}})
+
+    class SkybetaNode(Node):
+        def __init__(self):
+            super().__init__("jolie_flyx")
+            self.t0 = time.monotonic()
+            self.tel = Telemetry(now=0.0)
+            self.tel.pose_frame = POSE_FRAME_NED  # odometry is mapped to NED in on_odom
+            self.poses = deque(maxlen=300)      # (ROS time, NED position, q): ~3 s of odometry
+            self.poses_lock = threading.Lock()  # odometry thread appends, depth thread reads
+            self.depth_stats = {"frames": 0, "matched": 0, "fallback": 0, "unmatched": 0, "turning": 0}
+            self.px4_modes, self.stalls = [], []
+            self.intr = None
+            self.last_sky = {}
+            self.real = {"armed": False, "offboard_active": False, "landed": False, "nav_state_name": None,
+                         "px4_link": False}
+            self.real_armed_seen, self._real_armed_logged = False, -1e9
+            self.arrivals = {"odometry": None, "skybeta_state": None, "depth": None, "camera_info": None}
+            self.stale_now, self.stale_events = set(), 0
+            self.foreign, self.violation, self.shadow_sent = {}, "", 0
+            self.terminal_logged = False
+            self.failed_since, self.restarts = None, []
+            sensors, depth_group, control = (MutuallyExclusiveCallbackGroup() for _ in range(3))
+            # steady clock: a stalled, slow or missing /clock must not stop the setpoint stream
+            steady = Clock(clock_type=ClockType.STEADY_TIME)
+            # planning (blocks on the planner process for up to ~1 s) runs on its own thread, see main()
+            self.create_timer(.05, self.on_control, callback_group=control, clock=steady)
+            self.create_timer(2.0, self.on_graph, callback_group=control, clock=steady)
+            self.status_pub = self.publisher(String, "~/status")
+            if fly:
+                self.sp_pub = self.publisher(PoseStamped, "/skybeta/setpoint/pose")
+            else:
+                self.sp_pub = self.publisher(PoseStamped, a.shadow_topic)
+            self.create_subscription(Odometry, a.odometry_topic, self.on_odom, qos_profile_sensor_data,
+                                     callback_group=sensors)
+            self.create_subscription(String, "/skybeta/state", self.on_state, 10, callback_group=sensors)
+            if a.depth_topic:
+                info = a.camera_info_topic or a.depth_topic.rsplit("/", 1)[0] + "/camera_info"
+                self.create_subscription(Image, a.depth_topic, self.on_depth, qos_profile_sensor_data,
+                                         callback_group=depth_group)
+                self.create_subscription(CameraInfo, info, self.on_info, qos_profile_sensor_data,
+                                         callback_group=depth_group)
+            else:
+                self.get_logger().warn("no --depth-topic: planning on the published map only")
+            self.last_state = None
+            self.last_tick = None
+            self.ticks = 0
+            if fly:
+                self.get_logger().info(f"jolie_flyx v4c up: FLYING (Sky Beta contract) -> /skybeta/setpoint/pose; "
+                                       f"odometry {a.odometry_topic}; journal {a.output}. "
+                                       "The pilot arms; the flight interface enters Offboard.")
+            else:
+                self.get_logger().info(
+                    f"jolie_flyx v4c up: SHADOW - publishes NOTHING to {', '.join(p + '/*' for p in FORBIDDEN_PREFIXES)}; "
+                    f"would-be setpoints on {a.shadow_topic}; "
+                    + ("FAKE-ARMED (pretends the pilot armed once the real vehicle is healthy, landed, disarmed)"
+                       if fake else "plan-only")
+                    + ("; FAKE ALTITUDE in TAKEOFF" if a.fake_altitude else "")
+                    + f"; odometry {a.odometry_topic}; depth {a.depth_topic or 'none'}; "
+                    f"camera offset {list(a.camera_offset)}; journal {a.output}")
+
+        def publisher(self, msg_type, topic):
+            """The only way this node creates publishers: refuses vehicle topics (shadow) and PX4 inputs."""
+            full = self.resolve_topic_name(topic)
+            if is_forbidden_topic(full, shadow=shadow):
+                raise RuntimeError(f"refusing to publish {full} ({'shadow' if shadow else 'never a PX4 input'})")
+            return self.create_publisher(msg_type, topic, 10)
+
+        def now(self):
+            return self.get_clock().now().nanoseconds * 1e-9
+
+        # ---------------------------------------------------------- inputs
+        def on_odom(self, msg):
+            t, tel = time.monotonic(), self.tel        # arrival time, monotonic (see Telemetry)
+            self.arrivals["odometry"] = t
+            p, o = msg.pose.pose.position, msg.pose.pose.orientation
+            try:
+                q = enu_flu_to_ned_frd((o.w, o.x, o.y, o.z))
+            except ValueError:
+                return
+            lift = pilot.lift_m if pilot is not None else 0.0      # fake altitude (shadow only)
+            tel.odom_t, tel.position_ned, tel.q_ned_frd = t, enu_to_ned((p.x, p.y, p.z + lift)), q
+            stamp = msg.header.stamp.sec + msg.header.stamp.nanosec * 1e-9
+            with self.poses_lock:
+                self.poses.append((stamp if stamp > 0 else self.now(), tel.position_ned, tel.q_ned_frd))
+
+        def on_state(self, msg):
+            try:
+                st = json.loads(msg.data)
+            except ValueError:
+                return
+            t, tel = time.monotonic(), self.tel
+            self.arrivals["skybeta_state"] = t
+            armed, offboard = bool(st.get("armed")), bool(st.get("offboard_active"))
+            self.real = {"armed": armed, "offboard_active": offboard,
+                         "landed": bool(st.get("landed", not armed)), "nav_state_name": st.get("nav_state_name"),
+                         "px4_link": bool(st.get("px4_link"))}
+            if (armed, offboard, st.get("nav_state")) != (self.last_sky.get("armed"), self.last_sky.get("offboard_active"),
+                                                         self.last_sky.get("nav_state")):
+                self.px4_modes.append(f"{st.get('nav_state_name')} armed={armed} offboard_active={offboard}")
+                log({"kind": "px4_mode", "t": self.now(), "nav_state": st.get("nav_state"),
+                     "nav_state_name": st.get("nav_state_name"), "armed": armed, "offboard_active": offboard})
+            if shadow and (armed or offboard):
+                self.real_armed_seen = True
+                if t - self._real_armed_logged > 2.0:
+                    self._real_armed_logged = t
+                    self.get_logger().error(
+                        f"REAL VEHICLE armed={armed} offboard_active={offboard} ({st.get('nav_state_name')}) "
+                        "while this program is in SHADOW: it publishes NOTHING to the vehicle - the pilot is "
+                        "flying on someone else's commands")
+                    log({"kind": "REAL_VEHICLE_ARMED_IN_SHADOW", "t": self.now(), "armed": armed,
+                         "offboard_active": offboard, "nav_state_name": st.get("nav_state_name")})
+            tel.status_t = tel.local_t = tel.landed_t = t
+            vehicle_view(tel, self.real, pilot, mission.state, fly)
+            tel.failsafe = False
+            tel.xy_valid = tel.z_valid = bool(st.get("px4_link")) and st.get("local_enu") is not None
+            if st.get("clamped") and st.get("clamped") != self.last_sky.get("clamped"):
+                log({"kind": "clamped", "t": self.now(), "clamped": st.get("clamped")})
+            self.last_sky = st
+
+        def on_info(self, msg):
+            self.arrivals["camera_info"] = time.monotonic()
+            if self.intr is None:
+                self.intr = list(msg.k)
+                log({"kind": "camera_info", "k": list(msg.k), "width": msg.width, "height": msg.height,
+                     "frame_id": msg.header.frame_id})
+                self.get_logger().info(f"camera_info {msg.width}x{msg.height} fx={msg.k[0]:.1f} fy={msg.k[4]:.1f} "
+                                       f"cx={msg.k[2]:.1f} cy={msg.k[5]:.1f} frame {msg.header.frame_id}")
+
+        def pose_at(self, stamp):
+            """(course pose when the image was taken, yaw rate then): odometry nearest its header
+            stamp, same ROS clock. Projecting with the latest pose smears walls during turns."""
+            with self.poses_lock:
+                poses = list(self.poses)
+            if stamp > 0 and poses:
+                t, pos, q = min(poses, key=lambda p: abs(p[0] - stamp))
+                if abs(t - stamp) <= .05:
+                    self.depth_stats["matched"] += 1
+                    t0, _, q0 = min(poses, key=lambda p: abs(p[0] - (stamp - .15)))
+                    dyaw = yaw_from_q_ned(q) - yaw_from_q_ned(q0)
+                    rate = abs(math.atan2(math.sin(dyaw), math.cos(dyaw))) / max(t - t0, .05)
+                    return odom_to_course(mission.frame, pos, q), rate
+            if self.depth_stats["matched"] >= 20:      # stamps do match normally: this frame fell in a
+                self.depth_stats["unmatched"] += 1      # gap in the pose history (a stall) - skip it
+                return None, 0.0
+            self.depth_stats["fallback"] += 1           # unstamped / other clock: latest pose
+            return mission.pose_course, 0.0
+
+        def on_depth(self, msg):
+            self.arrivals["depth"] = time.monotonic()
+            if mission.frame is None or self.intr is None or not mission.planning_allowed():
+                return
+            self.depth_stats["frames"] += 1
+            if self.depth_stats["frames"] % 100 == 1:
+                log({"kind": "depth", "t": self.now(), **self.depth_stats, "quality": planner.depth_quality})
+            pose, rate = self.pose_at(msg.header.stamp.sec + msg.header.stamp.nanosec * 1e-9)
+            if pose is None:
+                return
+            xyz, _, rotation = pose
+            if rate > MAX_TURN_RATE:
+                self.depth_stats["turning"] += 1
+                return
+            # the planner process takes the latest frame at its next step (<= 5 Hz)
+            planner.give_frame((bytes(msg.data), msg.width, msg.height, msg.encoding, msg.step, self.intr,
+                                xyz, rotation))
+
+        # ---------------------------------------------------------- planning
+        def on_plan(self):
+            t0 = time.perf_counter()
+            cmd = mission.plan()
+            ms = 1e3 * (time.perf_counter() - t0)
+            if cmd is not None:
+                log({"kind": "plan", "t": self.now(), "mode": cmd.mode, "reason": cmd.reason, "ms": round(ms, 1),
+                     "planner_ms": round(planner.ms, 1),
+                     "target": None if mission.target is None else [list(mission.target[0]), mission.target[1]],
+                     "cleared": [c["name"] for c in planner.cleared]})
+                if ms > 1e3 * SLOW_PLAN_WARN_S:
+                    self.get_logger().warn(f"slow planner step {ms / 1e3:.2f} s (planner process timeout?)")
+
+        # ---------------------------------------------------------- watchdogs
+        def watch_inputs(self, mono):
+            """WARN once when an input goes stale (or never arrives), INFO when it is back."""
+            for name, limit in STALE_LIMITS_S.items():
+                if name == "depth" and not a.depth_topic:
+                    continue
+                t = self.arrivals[name]
+                age = (mono - self.t0) if t is None else mono - t
+                never = t is None
+                if never and age < 10.0:                 # start-up grace (lazy depth needs a few s)
+                    continue
+                if age > limit and name not in self.stale_now:
+                    self.stale_now.add(name)
+                    self.stale_events += 1
+                    what = f"no {name} message yet ({age:.1f} s)" if never else f"{name} {age:.2f} s old"
+                    self.get_logger().warn(f"stale input: {what} (state {mission.state})")
+                    log({"kind": "stale", "t": self.now(), "input": name, "age_s": round(age, 3), "never": never})
+                elif age <= limit and name in self.stale_now:
+                    self.stale_now.discard(name)
+                    self.get_logger().info(f"input back: {name}")
+                    log({"kind": "stale_end", "t": self.now(), "input": name})
+
+        def on_graph(self):
+            """Every 2 s: our own publishers (shadow must have no vehicle topic) and foreign ones."""
+            me, ns = self.get_name(), self.get_namespace()
+            try:
+                mine = [n for n, _ in self.get_publisher_names_and_types_by_node(me, ns)]
+            except Exception:                           # graph not ready yet
+                mine = []
+            bad = [n for n in mine if is_forbidden_topic(n, shadow=shadow)]
+            if bad and not self.violation:
+                self.violation = ", ".join(bad)
+                self.get_logger().error(f"SHADOW VIOLATION: this node publishes {self.violation}; stopping")
+                log({"kind": "SHADOW_VIOLATION", "t": self.now(), "topics": bad})
+            for topic in VEHICLE_SETPOINT_TOPICS:
+                try:
+                    infos = self.get_publishers_info_by_topic(topic)
+                except Exception:
+                    continue
+                others = sorted({(i.node_namespace.rstrip("/") + "/" + i.node_name) for i in infos
+                                 if not (i.node_name == me and i.node_namespace == ns)})
+                if others != self.foreign.get(topic, []):
+                    self.foreign[topic] = others
+                    if others:
+                        msg = (f"foreign publisher(s) on {topic}: {', '.join(others)} "
+                               + ("(tolerated: shadow publishes nothing there)" if shadow else
+                                  "- two setpoint publishers fight; stop the other one before flying"))
+                        if shadow:
+                            self.get_logger().info(msg)
+                        else:
+                            self.get_logger().warn(msg)
+                    log({"kind": "foreign_publishers", "t": self.now(), "topic": topic, "nodes": others})
+
+        # ---------------------------------------------------------- control
+        def on_control(self):
+            nonlocal mission, pilot
+            mono, sim = time.monotonic(), self.now()
+            if shadow and fake and mission.state == "FAILED":
+                self.failed_since = mono if self.failed_since is None else self.failed_since
+                if mono - self.failed_since >= SHADOW_RESTART_S:     # keep exercising the stack
+                    self.restarts.append(mission.events[-1:])
+                    self.get_logger().info(f"[SHADOW] restarting the shadow mission (restart {len(self.restarts)})")
+                    log({"kind": "shadow_restart", "t": sim, "after": mission.events[-1:]})
+                    pilot, mission = new_pilot(), new_mission()
+                    self.failed_since, self.last_state = None, None
+                    with self.poses_lock:
+                        self.poses.clear()
+            if self.last_tick is not None:                     # control timer is 20 Hz
+                gap = mono - self.last_tick
+                if gap > .15:
+                    self.stalls.append(gap)
+                    log({"kind": "timing", "t": sim, "gap_s": round(gap, 3)})
+                    if gap > STALL_WARN_S:
+                        self.get_logger().warn(f"control loop stall {gap:.2f} s")
+            self.last_tick = mono
+            self.ticks += 1
+            if self.ticks % 20 == 0:
+                self.watch_inputs(mono)
+            self.tel.now, self.tel.sim_now = mono, None        # flight limit on the steady clock
+            vehicle_view(self.tel, self.real, pilot, mission.state, fly)
+            out = mission.tick(self.tel)
+            if pilot is not None:
+                note = pilot.step(out.state, mono, out.command)
+                if note:
+                    self.get_logger().info(f"[SHADOW] {note}")
+                    log({"kind": "shadow_pilot", "t": sim, "event": note, "state": out.state, "lift_m": pilot.lift_m})
+                    if "ALTITUDE" in note or "LAND" in note:
+                        with self.poses_lock:           # pose history before/after a lift must not mix
+                            self.poses.clear()
+            if out.state != self.last_state:
+                note = mission.events[-1]["note"] if mission.events and mission.events[-1]["to"] == out.state else ""
+                text = f"state {self.last_state} -> {out.state} {note or out.note}"
+                if out.state == "FAILED":         # one severity per call site (rclpy enforces it)
+                    self.get_logger().warn(text)
+                else:
+                    self.get_logger().info(text)
+                log({"kind": "state", "t": sim, "state": out.state, "note": out.note,
+                     "events": mission.events[-1:]})
+                self.last_state = out.state
+            self.status_pub.publish(String(data=json.dumps({
+                "state": out.state, "note": out.note, "planner": mission.planner_status,
+                "cleared": [c["name"] for c in planner.cleared],
+                "mode": "FLY" if fly else "SHADOW", "fake_armed": bool(pilot and pilot.armed),
+                "fake_altitude_m": pilot.lift_m if pilot else 0.0,
+                "real": self.real, "real_armed_seen": self.real_armed_seen,
+                "stale": sorted(self.stale_now), "foreign": self.foreign, "shadow_setpoints": self.shadow_sent})))
+            if out.command is not None:                        # Offboard / arm / Land: the pilot does these
+                log({"kind": "pilot_action", "t": sim, "command": out.command.command, "state": out.state,
+                     "shadow": shadow})
+            if out.setpoint is None:
+                return                                         # pose setpoints persist: the interface holds
+            pos, yaw = out.setpoint
+            msg = PoseStamped()
+            msg.header.stamp = self.get_clock().now().to_msg()
+            msg.header.frame_id = "odom"
+            msg.pose.position.x, msg.pose.position.y, msg.pose.position.z = enu_to_ned(pos)   # same map back
+            yaw_enu = math.pi / 2 - float(yaw)
+            msg.pose.orientation.w, msg.pose.orientation.z = math.cos(yaw_enu / 2), math.sin(yaw_enu / 2)
+            self.sp_pub.publish(msg)                           # shadow: the shadow topic (see __init__)
+            self.shadow_sent += int(shadow)
+
+    from rclpy.signals import SignalHandlerOptions
+    rclpy.init(signal_handler_options=SignalHandlerOptions.NO)
+
+    def interrupt(signum, frame):
+        raise KeyboardInterrupt
+    signal.signal(signal.SIGINT, interrupt)
+    signal.signal(signal.SIGTERM, interrupt)
+    node = SkybetaNode()
+    # Single-threaded executor: every ROS callback is short (Jolie: MultiThreadedExecutor ~73 % of a
+    # core vs ~13 %); planning runs on its own thread.
+    executor = SingleThreadedExecutor()
+    executor.add_node(node)
+    planning_stop = threading.Event()
+
+    def planning_loop():                        # 5 Hz, outside the executor
+        while not planning_stop.is_set():
+            t0 = time.monotonic()
+            try:
+                node.on_plan()
+            except Exception:
+                import traceback
+                log({"kind": "error", "where": "planning", "error": traceback.format_exc()})
+                node.get_logger().error("planning step raised:\n" + traceback.format_exc())
+            planning_stop.wait(max(0.0, .2 - (time.monotonic() - t0)))
+
+    planning_thread = threading.Thread(target=planning_loop, daemon=True)
+    planning_thread.start()
+
+    def spin():
+        try:
+            executor.spin()
+        except Exception:                       # a callback raised: rclpy stops the executor
+            import traceback
+            log({"kind": "error", "where": "callback", "error": traceback.format_exc()})
+            print(traceback.format_exc(), file=sys.stderr, flush=True)
+
+    spinner = threading.Thread(target=spin, daemon=True)
+    spinner.start()
+    exit_code = 0
+    try:
+        while rclpy.ok() and spinner.is_alive() and not node.violation:
+            if mission.state in TERMINAL_STATES:
+                if fly:
+                    break
+                if not node.terminal_logged and not (fake and mission.state == "FAILED"):            # shadow: stay up (status keeps flowing) until Ctrl-C
+                    node.terminal_logged = True
+                    node.get_logger().info(f"shadow: mission ended in {mission.state}; still up, Ctrl-C to stop")
+            time.sleep(.1)
+        if not spinner.is_alive():              # the interface holds the last pose; the pilot lands
+            node.get_logger().error(f"executor stopped in {mission.state}" + ("" if shadow else ": the pilot must land"))
+            exit_code = 1
+        if node.violation:
+            exit_code = 3
+    except KeyboardInterrupt:
+        pass                                    # pose setpoints persist: the interface holds; the pilot lands
+    finally:
+        signal.signal(signal.SIGINT, signal.SIG_IGN)     # a second Ctrl-C must not break the clean-up
+        signal.signal(signal.SIGTERM, signal.SIG_IGN)
+        log({"kind": "end", "state": mission.state, "events": mission.events, "depth": node.depth_stats,
+             "depth_quality": planner.depth_quality, "mode": "FLY" if fly else "SHADOW",
+             "shadow_pilot": pilot.events if pilot else None, "shadow_setpoints": node.shadow_sent,
+             "stale_events": node.stale_events, "shadow_restarts": len(node.restarts), "stalls": len(node.stalls), "real_armed_seen": node.real_armed_seen,
+             "foreign": node.foreign, "violation": node.violation,
+             "cleared": planner.cleared, "planner_events": planner.events})
+        print_summary(mission, planner, node, a.output / "journal.jsonl")
+        if shadow:
+            print(f"SHADOW: {node.shadow_sent} would-be setpoints on {a.shadow_topic}, none to the vehicle; "
+                  f"stale-input events {node.stale_events}; real vehicle armed seen: {node.real_armed_seen}; "
+                  f"fake pilot: {[e['event'].split(' (')[0] for e in (pilot.events if pilot else [])]}", flush=True)
+        planning_stop.set()
+        planning_thread.join(timeout=3.0)       # finish the step in flight before closing its pipe
+        executor.shutdown(timeout_sec=1.0)
+        planner.close()
+        node.destroy_node()
+        log_closed.set()
+        log_queue.put(None)
+        writer.join(timeout=3.0)
+        journal.close()
+        rclpy.try_shutdown()
+        print("jolie_flyx: clean shutdown", flush=True)
+    return exit_code
+
+
+if __name__ == "__main__":
+    sys.exit(main())

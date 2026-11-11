@@ -1,0 +1,6 @@
+{
+  "instruction": "Follow all checkpoints in order, traverse the tunnel, enter through Gate B, land and disarm on the pad.",
+  "chicane": "gate_b",
+  "return_enabled": false,
+  "speed_scale": 1.0
+}

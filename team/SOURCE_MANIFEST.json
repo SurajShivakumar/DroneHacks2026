@@ -1,0 +1,824 @@
+{
+  "source_repository": "https://github.com/jakefromstatefarm00/dronehacks2026---simready",
+  "source_commit": "384eedd4ee728d5802a6dbde8ba69406080694a7",
+  "snapshot_date": "2026-11-10",
+  "policy": "Tracked source only; logs, recordings, nested worktrees and generated run directories excluded. Untracked teammate edits are preserved in the original workspace and not imported.",
+  "files": [
+    {
+      "path": ".gitignore",
+      "source_sha256": "6f4ff2992c4e2558837e2e09c39ed2bba140658755b22d046aab810ea2c90ca0",
+      "snapshot_sha256": "6f4ff2992c4e2558837e2e09c39ed2bba140658755b22d046aab810ea2c90ca0"
+    },
+    {
+      "path": "DEBUG_TAKEOFF.md",
+      "source_sha256": "6fe4aedc922881d396878f8c8ea7dee1e52932902ae3ad32a8cbbbfd223c4b45",
+      "snapshot_sha256": "6fe4aedc922881d396878f8c8ea7dee1e52932902ae3ad32a8cbbbfd223c4b45"
+    },
+    {
+      "path": "README.md",
+      "source_sha256": "ddb8d56a6fd525205dcf590631a5ede14a7072588b73d6e6cfafcfe2a2ea9ad9",
+      "snapshot_sha256": "77cdaa1babeffb516a81fc27d475a22d2169b73956ca78fdd3cc4480eabd51fa"
+    },
+    {
+      "path": "drone_bootstrap.sh",
+      "source_sha256": "cb61f435712c5af8266df91ad1f8dfa1dd920741363a308d5cc31d86f827fc66",
+      "snapshot_sha256": "b166123c837283bd7f9ba6c42ac55c436d189bbdaf9b0b349e12ac6847faafd8"
+    },
+    {
+      "path": "flyx_skybeta/.gitignore",
+      "source_sha256": "ccf58e28fccde6c0c37d6abe83e98be8db118e70e1d82214ccaceca4bcac7931",
+      "snapshot_sha256": "ccf58e28fccde6c0c37d6abe83e98be8db118e70e1d82214ccaceca4bcac7931"
+    },
+    {
+      "path": "flyx_skybeta/README.md",
+      "source_sha256": "30763afe35bfcc5fe7deb1c63c605c864b44c8376d31f0b8ea4a6dccf91b3f5f",
+      "snapshot_sha256": "30763afe35bfcc5fe7deb1c63c605c864b44c8376d31f0b8ea4a6dccf91b3f5f"
+    },
+    {
+      "path": "flyx_skybeta/run.sh",
+      "source_sha256": "314ae792fde40ab61799b0f2fee72c12d2f3dd38563659dbed118ee46306b7cd",
+      "snapshot_sha256": "314ae792fde40ab61799b0f2fee72c12d2f3dd38563659dbed118ee46306b7cd"
+    },
+    {
+      "path": "flyx_successes/README.md",
+      "source_sha256": "1229aef9eeda1c13bcef17293a818636cd9f53586096bef7369815a2e51557e5",
+      "snapshot_sha256": "1229aef9eeda1c13bcef17293a818636cd9f53586096bef7369815a2e51557e5"
+    },
+    {
+      "path": "flyx_successes/upload_to_flyx.py",
+      "source_sha256": "a97f94e9ef36d2974db2afb2678a8ec0cbfcdb953997d40932f14c6f2eb52f6a",
+      "snapshot_sha256": "a97f94e9ef36d2974db2afb2678a8ec0cbfcdb953997d40932f14c6f2eb52f6a"
+    },
+    {
+      "path": "flyx_successes/upload_to_flyx_704.py",
+      "source_sha256": "feb73d6434dae87bc032e5b9c56d3dd686a81a22aac07b99446bdea32af89732",
+      "snapshot_sha256": "feb73d6434dae87bc032e5b9c56d3dd686a81a22aac07b99446bdea32af89732"
+    },
+    {
+      "path": "flyx_successes/upload_to_flyx_cornerfix_view.py",
+      "source_sha256": "a83dd188901578eb7c48d6b7d176db7b87ed14cab991b5e20820a76478f0c50c",
+      "snapshot_sha256": "a83dd188901578eb7c48d6b7d176db7b87ed14cab991b5e20820a76478f0c50c"
+    },
+    {
+      "path": "flyx_successes/upload_to_flyx_v3.py",
+      "source_sha256": "97c193b6b9b6ba92c732d9f3bd9409aa3b458a8e0feda590d660a6f3afc6bfc3",
+      "snapshot_sha256": "97c193b6b9b6ba92c732d9f3bd9409aa3b458a8e0feda590d660a6f3afc6bfc3"
+    },
+    {
+      "path": "jetson/ev_latency_experiment.sh",
+      "source_sha256": "7f8d68c77570d6d2f82ddcc6b8bafdcdc5b06ec0847a29b4c7e68a94a23d941c",
+      "snapshot_sha256": "7f8d68c77570d6d2f82ddcc6b8bafdcdc5b06ec0847a29b4c7e68a94a23d941c"
+    },
+    {
+      "path": "jetson/fly",
+      "source_sha256": "94f92e883804ca5f4d9cfb3dd7f053e899855acd8a9ac8df2b0abd5b8fb12a28",
+      "snapshot_sha256": "94f92e883804ca5f4d9cfb3dd7f053e899855acd8a9ac8df2b0abd5b8fb12a28"
+    },
+    {
+      "path": "jetson/jolie_best/jolie_best/__init__.py",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "snapshot_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "jetson/jolie_best/launch/jolie_best.launch.py",
+      "source_sha256": "f1452e76045f4242eaff0f0eda7ae363d7b3b895b7aa0892d7fe9bbff74f8ec6",
+      "snapshot_sha256": "f1452e76045f4242eaff0f0eda7ae363d7b3b895b7aa0892d7fe9bbff74f8ec6"
+    },
+    {
+      "path": "jetson/jolie_best/package.xml",
+      "source_sha256": "0b020d728f7b00bfb5769ba5c27e180028237f3cfd8f6426777a831bb4e61458",
+      "snapshot_sha256": "0b020d728f7b00bfb5769ba5c27e180028237f3cfd8f6426777a831bb4e61458"
+    },
+    {
+      "path": "jetson/jolie_best/resource/jolie_best",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "snapshot_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "jetson/jolie_best/scripts/upload_to_flyx_v4c_skybeta.py",
+      "source_sha256": "619123992f0280b665ab3a2dd34817c9ec8e5449237544901a4189410350d8e8",
+      "snapshot_sha256": "619123992f0280b665ab3a2dd34817c9ec8e5449237544901a4189410350d8e8"
+    },
+    {
+      "path": "jetson/jolie_best/scripts/upload_to_flyx_v4c_skybeta_hard.py",
+      "source_sha256": "9b581183f767af80a8610134d1c82673a0eba1aab5ce6b52730fb8f2f1b6521b",
+      "snapshot_sha256": "9b581183f767af80a8610134d1c82673a0eba1aab5ce6b52730fb8f2f1b6521b"
+    },
+    {
+      "path": "jetson/jolie_best/setup.cfg",
+      "source_sha256": "c07daee3e4f5aad245d69be3ecbbc3f32cac814f1a14dd4764a669e198b1a859",
+      "snapshot_sha256": "c07daee3e4f5aad245d69be3ecbbc3f32cac814f1a14dd4764a669e198b1a859"
+    },
+    {
+      "path": "jetson/jolie_best/setup.py",
+      "source_sha256": "724d8686f4d99083178d31989e46bf50c898e08bbea35280df3222d800a218cf",
+      "snapshot_sha256": "724d8686f4d99083178d31989e46bf50c898e08bbea35280df3222d800a218cf"
+    },
+    {
+      "path": "jetson/preflight.sh",
+      "source_sha256": "ea97a3b46a76b9bf3382e33d36d1b3bfedaa0e63235c5e468081a775a2ee7aa1",
+      "snapshot_sha256": "ea97a3b46a76b9bf3382e33d36d1b3bfedaa0e63235c5e468081a775a2ee7aa1"
+    },
+    {
+      "path": "jetson/px4/skybeta06_ekf2_vision_delay.params",
+      "source_sha256": "1f6b81a79d45edbc19a3a1111e487d1e803113162b2436e8be0a0c8dda9a65dc",
+      "snapshot_sha256": "1f6b81a79d45edbc19a3a1111e487d1e803113162b2436e8be0a0c8dda9a65dc"
+    },
+    {
+      "path": "jetson/record",
+      "source_sha256": "579a594e8c539d2de6535aff9827ca202cd4cb394f07b131b7d5a9fc335261af",
+      "snapshot_sha256": "579a594e8c539d2de6535aff9827ca202cd4cb394f07b131b7d5a9fc335261af"
+    },
+    {
+      "path": "jetson/record_rc_run.sh",
+      "source_sha256": "20d90d1f516cf6cef544df030a4957e0b5cb3c153f0b458639b12990efb43e2e",
+      "snapshot_sha256": "20d90d1f516cf6cef544df030a4957e0b5cb3c153f0b458639b12990efb43e2e"
+    },
+    {
+      "path": "jetson/run_jolie.sh",
+      "source_sha256": "d69c08ef5dd7334a4ae3b76ca41b99e2f17cf8e28ef6045e87e152b8d2e52954",
+      "snapshot_sha256": "d69c08ef5dd7334a4ae3b76ca41b99e2f17cf8e28ef6045e87e152b8d2e52954"
+    },
+    {
+      "path": "jetson/simple_v4c_skybeta.py",
+      "source_sha256": "3ee494d10e8f46be8d3d35302815bd85f038a6059224e160006883fe29485b3c",
+      "snapshot_sha256": "3ee494d10e8f46be8d3d35302815bd85f038a6059224e160006883fe29485b3c"
+    },
+    {
+      "path": "jetson/telemetry_watch.py",
+      "source_sha256": "b006e1d41faf83a5c6d25cfee87b41d458745dfaa15ef48be2217cb188bdb7be",
+      "snapshot_sha256": "b006e1d41faf83a5c6d25cfee87b41d458745dfaa15ef48be2217cb188bdb7be"
+    },
+    {
+      "path": "jetson/test_rc/fake_drone.py",
+      "source_sha256": "b31632ac39784d474d92f57cbfe34d8d7bcef64a3b1b54b285c614e30f9d1081",
+      "snapshot_sha256": "b31632ac39784d474d92f57cbfe34d8d7bcef64a3b1b54b285c614e30f9d1081"
+    },
+    {
+      "path": "jetson/test_rc/run_local_test.sh",
+      "source_sha256": "415c0c0b5655f72452a5e9ab321a1919a693074446c8ebe0782c227372a066a6",
+      "snapshot_sha256": "415c0c0b5655f72452a5e9ab321a1919a693074446c8ebe0782c227372a066a6"
+    },
+    {
+      "path": "jetson/test_simple.py",
+      "source_sha256": "40ae40a9533da4dac98d1adc964bce74bf61d67364e2b473f281c912c54822d6",
+      "snapshot_sha256": "40ae40a9533da4dac98d1adc964bce74bf61d67364e2b473f281c912c54822d6"
+    },
+    {
+      "path": "jolie_course/.gitignore",
+      "source_sha256": "ccf58e28fccde6c0c37d6abe83e98be8db118e70e1d82214ccaceca4bcac7931",
+      "snapshot_sha256": "ccf58e28fccde6c0c37d6abe83e98be8db118e70e1d82214ccaceca4bcac7931"
+    },
+    {
+      "path": "jolie_course/README.md",
+      "source_sha256": "584e025081cb8a820e2a42fd274b1026da754f13dc0015bf293df1ab1ccf6950",
+      "snapshot_sha256": "584e025081cb8a820e2a42fd274b1026da754f13dc0015bf293df1ab1ccf6950"
+    },
+    {
+      "path": "jolie_course/build_skybeta_copy.py",
+      "source_sha256": "72dc6517fdeaeb1bc34d363229fffbe4fd05ec6ac3d0179ee1899816b927b0b4",
+      "snapshot_sha256": "72dc6517fdeaeb1bc34d363229fffbe4fd05ec6ac3d0179ee1899816b927b0b4"
+    },
+    {
+      "path": "jolie_course/jolie_course.py",
+      "source_sha256": "e8ca6bea2a1b445f1457f131fcbcaf766bc3a36033e54f61c59ff6c56bb1558e",
+      "snapshot_sha256": "e8ca6bea2a1b445f1457f131fcbcaf766bc3a36033e54f61c59ff6c56bb1558e"
+    },
+    {
+      "path": "jolie_course/skybeta_main.py.in",
+      "source_sha256": "db1dfcb9bf645f2e510177ea8d87256b16539599cc0177101f77e388233f8d2d",
+      "snapshot_sha256": "db1dfcb9bf645f2e510177ea8d87256b16539599cc0177101f77e388233f8d2d"
+    },
+    {
+      "path": "jolie_course/upload_to_flyx.py",
+      "source_sha256": "29e3f9bd8fbe26cd2be9e9c8a98e0b2dd3b2577ea4ab49594751d3e15acadfbc",
+      "snapshot_sha256": "a97f94e9ef36d2974db2afb2678a8ec0cbfcdb953997d40932f14c6f2eb52f6a"
+    },
+    {
+      "path": "jolie_course/upload_to_flyx_skybeta.py",
+      "source_sha256": "7cd67e0b9efd2deb8279f3a59e94aa2cc0dd41931aed0c2bf821ce76f2f875ba",
+      "snapshot_sha256": "7cd67e0b9efd2deb8279f3a59e94aa2cc0dd41931aed0c2bf821ce76f2f875ba"
+    },
+    {
+      "path": "jolie_course/upload_to_flyx_v4c.py",
+      "source_sha256": "feb73d6434dae87bc032e5b9c56d3dd686a81a22aac07b99446bdea32af89732",
+      "snapshot_sha256": "feb73d6434dae87bc032e5b9c56d3dd686a81a22aac07b99446bdea32af89732"
+    },
+    {
+      "path": "jolie_course/upload_to_flyx_v4c_skybeta.py",
+      "source_sha256": "619123992f0280b665ab3a2dd34817c9ec8e5449237544901a4189410350d8e8",
+      "snapshot_sha256": "619123992f0280b665ab3a2dd34817c9ec8e5449237544901a4189410350d8e8"
+    },
+    {
+      "path": "jolie_course/upload_to_flyx_v4c_skybeta_hard.py",
+      "source_sha256": "9b581183f767af80a8610134d1c82673a0eba1aab5ce6b52730fb8f2f1b6521b",
+      "snapshot_sha256": "9b581183f767af80a8610134d1c82673a0eba1aab5ce6b52730fb8f2f1b6521b"
+    },
+    {
+      "path": "path_player/README.md",
+      "source_sha256": "02c7bda6de551cb605d8447b7af7e186f612d3349ef4fbe8bff1a168e80aade8",
+      "snapshot_sha256": "02c7bda6de551cb605d8447b7af7e186f612d3349ef4fbe8bff1a168e80aade8"
+    },
+    {
+      "path": "path_player/launch/path_player.launch.py",
+      "source_sha256": "1b67dd332f7c84f46673bed6d30f5da9c4d74ff8df5a6d74350f4c0d7431bca2",
+      "snapshot_sha256": "1b67dd332f7c84f46673bed6d30f5da9c4d74ff8df5a6d74350f4c0d7431bca2"
+    },
+    {
+      "path": "path_player/package.xml",
+      "source_sha256": "aa2c659d8a560f6e6c6896492c897e042f730b4ad7f4615bb07d305a6eccb772",
+      "snapshot_sha256": "aa2c659d8a560f6e6c6896492c897e042f730b4ad7f4615bb07d305a6eccb772"
+    },
+    {
+      "path": "path_player/path_player/__init__.py",
+      "source_sha256": "f29e5e39255d7f346dd2b1e3d11f086a3540674d43a9059852aa29ffe73e5453",
+      "snapshot_sha256": "f29e5e39255d7f346dd2b1e3d11f086a3540674d43a9059852aa29ffe73e5453"
+    },
+    {
+      "path": "path_player/path_player/node.py",
+      "source_sha256": "50ea4f943e42be90b0fcf1a54b47f26e315108e1b9e4353b0ca5504f7b88fbc8",
+      "snapshot_sha256": "50ea4f943e42be90b0fcf1a54b47f26e315108e1b9e4353b0ca5504f7b88fbc8"
+    },
+    {
+      "path": "path_player/path_player/replay.py",
+      "source_sha256": "2f760fcdd24a23d711c103c4396220daa9d6c01641463f0d6a7131f94b7d2b65",
+      "snapshot_sha256": "2f760fcdd24a23d711c103c4396220daa9d6c01641463f0d6a7131f94b7d2b65"
+    },
+    {
+      "path": "path_player/path_player/summary.py",
+      "source_sha256": "73a4f468a56f0de3c5612419a9336fc8c6f23bbb9f8c4534ee53ce9f95d3f6b7",
+      "snapshot_sha256": "73a4f468a56f0de3c5612419a9336fc8c6f23bbb9f8c4534ee53ce9f95d3f6b7"
+    },
+    {
+      "path": "path_player/resource/path_player",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "snapshot_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "path_player/setup.cfg",
+      "source_sha256": "1680491fb1057ea247a5533e758011907f6583a3d3bbb09a5ca9ba740f46ffbc",
+      "snapshot_sha256": "1680491fb1057ea247a5533e758011907f6583a3d3bbb09a5ca9ba740f46ffbc"
+    },
+    {
+      "path": "path_player/setup.py",
+      "source_sha256": "5970b6c8a07ffdf5378519762685c370fbe3f24c94f6768699d11c363fad700b",
+      "snapshot_sha256": "5970b6c8a07ffdf5378519762685c370fbe3f24c94f6768699d11c363fad700b"
+    },
+    {
+      "path": "path_player/test/test_replay.py",
+      "source_sha256": "4d6cff060e1007b1d9dc17bc5291ccf2c1ce5ef9138ad41e833a8211323bfc08",
+      "snapshot_sha256": "4d6cff060e1007b1d9dc17bc5291ccf2c1ce5ef9138ad41e833a8211323bfc08"
+    },
+    {
+      "path": "path_recorder/README.md",
+      "source_sha256": "cc1bc9003ec8fc028211e36ae77f6bbc44060739b517597e16b2cad7166753d8",
+      "snapshot_sha256": "cc1bc9003ec8fc028211e36ae77f6bbc44060739b517597e16b2cad7166753d8"
+    },
+    {
+      "path": "path_recorder/launch/path_recorder.launch.py",
+      "source_sha256": "0cfd1656e10b7935c0556088009d5ee73db1ff689688f38fc29ea85cda2207a2",
+      "snapshot_sha256": "0cfd1656e10b7935c0556088009d5ee73db1ff689688f38fc29ea85cda2207a2"
+    },
+    {
+      "path": "path_recorder/package.xml",
+      "source_sha256": "27cabb85c8d17279fd3e175c7d038eecce6e7e2d8bd703dd0b56e6a66ce5be57",
+      "snapshot_sha256": "27cabb85c8d17279fd3e175c7d038eecce6e7e2d8bd703dd0b56e6a66ce5be57"
+    },
+    {
+      "path": "path_recorder/path_recorder/__init__.py",
+      "source_sha256": "55f5c228782d6b163eb0813153d6f9abcaf17429ef4e0cee2a3f44f3372d3732",
+      "snapshot_sha256": "55f5c228782d6b163eb0813153d6f9abcaf17429ef4e0cee2a3f44f3372d3732"
+    },
+    {
+      "path": "path_recorder/path_recorder/dashboard.py",
+      "source_sha256": "6b4d9d122bce293f62e6460440be63a2a7855cda6388bd27d538da1af280d2bd",
+      "snapshot_sha256": "6b4d9d122bce293f62e6460440be63a2a7855cda6388bd27d538da1af280d2bd"
+    },
+    {
+      "path": "path_recorder/path_recorder/node.py",
+      "source_sha256": "6e5e0252fb58c474b330890954276198e7967d33af3c6f91cb7fe00784653097",
+      "snapshot_sha256": "6e5e0252fb58c474b330890954276198e7967d33af3c6f91cb7fe00784653097"
+    },
+    {
+      "path": "path_recorder/path_recorder/recording.py",
+      "source_sha256": "8254ce648784b053dc8a44b6f5a2ff32b0f43295c078258b0cdf269d2c40e0d6",
+      "snapshot_sha256": "8254ce648784b053dc8a44b6f5a2ff32b0f43295c078258b0cdf269d2c40e0d6"
+    },
+    {
+      "path": "path_recorder/path_recorder/summary.py",
+      "source_sha256": "02730a7aed44982a44f6d8b23340462f6bac1cd120cbf9e19a5cfbc96fd7de2d",
+      "snapshot_sha256": "02730a7aed44982a44f6d8b23340462f6bac1cd120cbf9e19a5cfbc96fd7de2d"
+    },
+    {
+      "path": "path_recorder/resource/path_recorder",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "snapshot_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "path_recorder/setup.cfg",
+      "source_sha256": "0929a8c7aba7371f89c8e2bef5807be06b2a84d9941f0e440b7e6428b013a898",
+      "snapshot_sha256": "0929a8c7aba7371f89c8e2bef5807be06b2a84d9941f0e440b7e6428b013a898"
+    },
+    {
+      "path": "path_recorder/setup.py",
+      "source_sha256": "b4316fc173bea999e3369891ae21b4e45c2bb663e48e376f157272e4fda9b098",
+      "snapshot_sha256": "b4316fc173bea999e3369891ae21b4e45c2bb663e48e376f157272e4fda9b098"
+    },
+    {
+      "path": "path_recorder/test/test_recording.py",
+      "source_sha256": "764cd0691193bb426d9c3f2fa51c01fd0689128681180c3bd16e30142bc92f5a",
+      "snapshot_sha256": "764cd0691193bb426d9c3f2fa51c01fd0689128681180c3bd16e30142bc92f5a"
+    },
+    {
+      "path": "pathfinding/.gitignore",
+      "source_sha256": "f739b56f37dcce46db3f7e0c7c8ff9524fd205f55be8b4110b7dd06f983d4a41",
+      "snapshot_sha256": "775dd910487dd507f398bbe1aaeeac4ec30342afb8b8a6b1ddebc9d76a88eeef"
+    },
+    {
+      "path": "pathfinding/README.md",
+      "source_sha256": "ce3507de22960ed926d3943b3c9f8f8c2dcbb4df9f4d2b125ad83d4cc8505fb2",
+      "snapshot_sha256": "ce3507de22960ed926d3943b3c9f8f8c2dcbb4df9f4d2b125ad83d4cc8505fb2"
+    },
+    {
+      "path": "pathfinding/config/course_v3.yaml",
+      "source_sha256": "b81695c3733beca1c418a2b52c2d85024e0d2765d8622a6caac15673edd8fc74",
+      "snapshot_sha256": "bc2087d6ccd224b0bff327327158b2d106a4304079b215d407d0e00de6393369"
+    },
+    {
+      "path": "pathfinding/course/dronehacks-course-v3.mtl",
+      "source_sha256": "ca40d304e9a49c0a38d8631ef9b5120cc60bc4b7bd9176b9b57467d1699f21ca",
+      "snapshot_sha256": "5d8e483cb6f0101d8b8939d118d9dd7fb4fc5f09a1ca5f6eb4ae1e4f5b48020b"
+    },
+    {
+      "path": "pathfinding/course/dronehacks-course-v3.obj",
+      "source_sha256": "c4d81de84728f323ed797d6759d78f6fce04338a23496c4f5409e1124755d198",
+      "snapshot_sha256": "e610bcf9666422e2a0a78cb46f542fc8c4d5a7ef9b15f6123f1abe40f5b8e9e1"
+    },
+    {
+      "path": "pathfinding/drl/__init__.py",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "snapshot_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "pathfinding/drl/config.py",
+      "source_sha256": "c277307f5e6c222838a2b468ca9b9e0d48d73637f7ec6c98a8971211ba8f8f96",
+      "snapshot_sha256": "d4b6b261c113f336b95a0803bf357c5d3d3799999fa1dcbe078a17f5a3bf1c6f"
+    },
+    {
+      "path": "pathfinding/drl/course.py",
+      "source_sha256": "2f61b65c7b66625c84935caa92a181f2017e95a4e165dab0e0016b0df3ed3c8a",
+      "snapshot_sha256": "84899e3c207b4b2acd3f7b0cd92d4f481c68da3a96d5d96087425295b0058349"
+    },
+    {
+      "path": "pathfinding/flyx/README.md",
+      "source_sha256": "b67a7c3ad384a5bfe1f8ca460808101697398350c6a5b5156b75ec43364eb528",
+      "snapshot_sha256": "591c180b0323dc5590e112150efdfff4a36bc04f6e17441cc0391d5ced0fae07"
+    },
+    {
+      "path": "pathfinding/flyx/__init__.py",
+      "source_sha256": "153010d8e17849adae85547bbb90361556e547cbc1c21e656bacfd50374cfc1b",
+      "snapshot_sha256": "153010d8e17849adae85547bbb90361556e547cbc1c21e656bacfd50374cfc1b"
+    },
+    {
+      "path": "pathfinding/flyx/pathplan_mission.py",
+      "source_sha256": "7cfa0473cec60b81a01d11b866459e66a7f08920f837471d908bb5885ecc7af9",
+      "snapshot_sha256": "7cfa0473cec60b81a01d11b866459e66a7f08920f837471d908bb5885ecc7af9"
+    },
+    {
+      "path": "pathfinding/pathplan/__init__.py",
+      "source_sha256": "4f2d58dc49de9c305ce6b730ca4890723c38f77adc02b240720182a07dcb6f41",
+      "snapshot_sha256": "46454f0e623873a1870a5fde79c3fd5b3c594d6650b6162a46e561078fc68736"
+    },
+    {
+      "path": "pathfinding/pathplan/belief.py",
+      "source_sha256": "7fd6dbaf3446406b7ee071fd7e840a1db55df40778ed823ab87df5132d2eb665",
+      "snapshot_sha256": "832e2fc16990ebdd1ad4226639ef06e60539bc75772ecc0e5cbd9fa359d044ab"
+    },
+    {
+      "path": "pathfinding/pathplan/depth_projection.py",
+      "source_sha256": "255464dbdd46899477d10c3c25c13196c5ce225f84571c9c68b8a68267e6d67e",
+      "snapshot_sha256": "d0c4f42f5ee3d98a7bff7aad36b30fd5026f738d102fd85cce20fc61c1791e39"
+    },
+    {
+      "path": "pathfinding/pathplan/dstar_lite.py",
+      "source_sha256": "3fb803e5c38978bbd1aa1a9a6ce38a6ff776d13e7f0060698f9ef022a188313f",
+      "snapshot_sha256": "81a5f157ca40158aa29c3ff50b1dd4bec50aefb48d30e8214f9eb56a5c70fe11"
+    },
+    {
+      "path": "pathfinding/pathplan/grid_search.py",
+      "source_sha256": "4e7209d56f6a7b26fc3011698a619b544013340e2541693bda0c6489a28b89ab",
+      "snapshot_sha256": "d7cc25d42dbdb86d654ff85028e64d8b60af5bc47c4fd91eb4e1f83b43592b4b"
+    },
+    {
+      "path": "pathfinding/pathplan/harness.py",
+      "source_sha256": "18015badef6c8895b6c618c6fecfa596a484fba09cde66a72d6ec282c440d588",
+      "snapshot_sha256": "71861349971441119d7cd87fea4a78391cc922402032eb6effb1a7306db459c3"
+    },
+    {
+      "path": "pathfinding/pathplan/mission.py",
+      "source_sha256": "4237d14613ed20f670ec8bff81ba312135a8b788b7cfc16533748896ac7425d9",
+      "snapshot_sha256": "48d6efc5a32b12c1443f4db71452cc357a59b44de2591a636c68d834415eee9c"
+    },
+    {
+      "path": "pathfinding/pathplan/online.py",
+      "source_sha256": "f395f38a2f3dd5e5f44ca5cc4b82d9fb1d58cfeff2c0318e7b72d1b2172ed2f2",
+      "snapshot_sha256": "564d6de38a6702046530ca37117ddb6e5acee2fa2a0638206902912111e82f15"
+    },
+    {
+      "path": "pathfinding/pathplan/planner_process.py",
+      "source_sha256": "99d9390a86c7bcc527418739b3ef5bcfc7c34d02d9bcd1c4bdf188fcb709702c",
+      "snapshot_sha256": "e9fb60eeb5bda6f9810cd6e061af2cc55ceaca2c36491a41f83975764028b9f5"
+    },
+    {
+      "path": "pathfinding/pathplan/ros_node.py",
+      "source_sha256": "8dd117216ccbc76482d8481d0a48dc6021e2ba5e1159603947dcec87588fe6ed",
+      "snapshot_sha256": "ce547205caa4a9ca023cfa9d68b0a4d53ddf06b21046369711a23063b756730a"
+    },
+    {
+      "path": "pathfinding/pathplan/sensor.py",
+      "source_sha256": "e7dbf81ff1fcff7e5ff8a8a07b62388a0c140fcc07577603528911de185debc2",
+      "snapshot_sha256": "0525e861e65431cf2eea7dec07b382dddc362b9ed928cfc9ecc150e84e9a8d19"
+    },
+    {
+      "path": "pathfinding/pathplan/variants.py",
+      "source_sha256": "ac80925c09bbc021c93c72c9dd897efddadadc3649f793bc5ee6971120108252",
+      "snapshot_sha256": "98bc052012db3b26c823cc66eba08d28c535d8f4d5825f2a65e14309ec5de9d7"
+    },
+    {
+      "path": "pathfinding/pathplan/world.py",
+      "source_sha256": "703a5b9c102498928feeebff2d50e9478fadee423757a6c454149cdb5cbac518",
+      "snapshot_sha256": "042886ad17f5f583507e48d7bab142bb909d76d3d5dade85770b855dc9838c67"
+    },
+    {
+      "path": "pathfinding/requirements.txt",
+      "source_sha256": "2e89b57b90f0d218287ef8aa8b3c4745652ea8ceadb7823a16df29db351cb29d",
+      "snapshot_sha256": "3829fec7dbe21e1261565cca163d05a59522e5ea028f5c444399c964cdb700fe"
+    },
+    {
+      "path": "pathfinding/ros2/dronehacks_pathplan/README.md",
+      "source_sha256": "f030032f173a1af61be85e00710c9bb315e4c5f69c4fdeb0ba2af5dff432c9dd",
+      "snapshot_sha256": "e601116afc7a89bce178a50d7e48c4ad743c520e4b04caca9a7ad7848f90a6e2"
+    },
+    {
+      "path": "pathfinding/ros2/dronehacks_pathplan/dronehacks_pathplan/__init__.py",
+      "source_sha256": "aed20c8f188a81d00128e999d5a0a119f2542bc3d6742692179ebddf6466cbac",
+      "snapshot_sha256": "adfe4e342af21fc3346e89996b692b4eef25a9d8a05286ee0719d6514f757c52"
+    },
+    {
+      "path": "pathfinding/ros2/dronehacks_pathplan/dronehacks_pathplan/pathplan_mission.py",
+      "source_sha256": "5fed04e1ee95a4b8ca49d92c3d286acdbe0f0066ac0782b34c6725ead7de8601",
+      "snapshot_sha256": "4668029c6de83bab1c6bfdaddb6b21a89dcbe03559859ac5ac758981167ac12d"
+    },
+    {
+      "path": "pathfinding/ros2/dronehacks_pathplan/launch/pathplan.launch.py",
+      "source_sha256": "ef2112060f0c664c5986a53fc770e3da04cafb6e0e7fdb04744c9f52d3351dc7",
+      "snapshot_sha256": "1240917a57695047a58775dcd5f38b7096139b3c1483110f14afb63d0e5e9ef7"
+    },
+    {
+      "path": "pathfinding/ros2/dronehacks_pathplan/package.xml",
+      "source_sha256": "6ec18cac37907f584955e749813919286fce91700017ca87ef7abc94496775de",
+      "snapshot_sha256": "ebd3f0fb662a80c1b7b69763590382845c0ef5ba2eb80df05945cb86465e76ee"
+    },
+    {
+      "path": "pathfinding/ros2/dronehacks_pathplan/resource/dronehacks_pathplan",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "snapshot_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "pathfinding/ros2/dronehacks_pathplan/setup.cfg",
+      "source_sha256": "43717b43b5720610098a96e45f7290958abb302db02964f2a05a8f16a92a6c64",
+      "snapshot_sha256": "46e5957fa7e46ad0e4179fc705b8dc4f44c684b7784f5a8b56432b7bb688d296"
+    },
+    {
+      "path": "pathfinding/ros2/dronehacks_pathplan/setup.py",
+      "source_sha256": "1fce2405ea05b6dc3b068284b2de96c851ac9b667d1a6b84129ca92976615226",
+      "snapshot_sha256": "eb3bdf3c44271184c93dcbeb033f94ca5bbca6c759bf9a79fc2ef93f7aa56db0"
+    },
+    {
+      "path": "pathfinding/ros2/dronehacks_pathplan/test/fake_skybeta.py",
+      "source_sha256": "2b964f74b95b0cde9717e16f7f43eadf611a3daa10d4e37744a0e9898ec383c5",
+      "snapshot_sha256": "e3953e52f2167154fec8cbf9deac9af735c8c504996faa85ec6fc99b5f9b5e22"
+    },
+    {
+      "path": "pathfinding/tests/test_pathplan_depth.py",
+      "source_sha256": "1bd2018f4ea90627c89a9b9314d701b94cab5f8a5d26df8607d99edbf9b642d2",
+      "snapshot_sha256": "b712661d8b1f899e301833f3435b96286a48fdb6893a5c7408a5e12b0190546b"
+    },
+    {
+      "path": "pathfinding/tests/test_pathplan_grid_search.py",
+      "source_sha256": "00510f558f3e7e1bfc019969db9fd225977fca1953a70bef0748e6c8eb4fb2f8",
+      "snapshot_sha256": "241de89c5f85ec732258b0c486be684cffb6f0fee011e6c39f9368fdf28b95f9"
+    },
+    {
+      "path": "pathfinding/tests/test_pathplan_mission.py",
+      "source_sha256": "7177cfc364e8341c078e890d13ddc26f62092f59f4beee4795abfe0b335c1087",
+      "snapshot_sha256": "38172eb85813aff88e9f30161b351b314659874d57d63d8ef1caa376c9e43321"
+    },
+    {
+      "path": "pathfinding/tests/test_pathplan_ros_helpers.py",
+      "source_sha256": "5fa1f9b4e88aa45e0472275546163f50588c16e13b2d5cfa83d6c41043d1029a",
+      "snapshot_sha256": "4d859d104676cfee565c208d255f836cd6a70fe8d560bb57d24ac6400c522d3d"
+    },
+    {
+      "path": "pathfinding/tests/test_pathplan_world_edt.py",
+      "source_sha256": "ca762cedb188d6be5426bdb22b95b22dff1476ca942f9d650f82299ee0407ec6",
+      "snapshot_sha256": "481e2c91f15a64b61a2f8648a0d334037f678575c474ee16e07d240aa19bf5b1"
+    },
+    {
+      "path": "pathfinding/tests/test_planner_process.py",
+      "source_sha256": "e11be36027238a4afec4cc4562c1564b10ddb6f3ca152eee15e0e0475e3abd7a",
+      "snapshot_sha256": "e11be36027238a4afec4cc4562c1564b10ddb6f3ca152eee15e0e0475e3abd7a"
+    },
+    {
+      "path": "pathfinding/tests/test_single_files.py",
+      "source_sha256": "e574c3abe765aacb9e853f6486dd36b9c415a942911cf4dd8c220f4ba0d2980d",
+      "snapshot_sha256": "e574c3abe765aacb9e853f6486dd36b9c415a942911cf4dd8c220f4ba0d2980d"
+    },
+    {
+      "path": "pathfinding/tools/build_single_file.py",
+      "source_sha256": "2613f42bb7634b2f756f46ea70c47558f831bcb458957fc3ea3d388ba60d4da8",
+      "snapshot_sha256": "2613f42bb7634b2f756f46ea70c47558f831bcb458957fc3ea3d388ba60d4da8"
+    },
+    {
+      "path": "suraj_course/.gitignore",
+      "source_sha256": "0dc97ec959c8eaba0dd296da7352a6c40a340c187f7075c3edfe479664820009",
+      "snapshot_sha256": "e5cefd046795d6750f9d32a85ef5e0313f17383ed182f771dcd892c15c66e3b6"
+    },
+    {
+      "path": "suraj_course/README.md",
+      "source_sha256": "9f92a18ff621694ac1ffae562e2ffb3cf98ca66bbc060234a92c605ab537daf7",
+      "snapshot_sha256": "9f92a18ff621694ac1ffae562e2ffb3cf98ca66bbc060234a92c605ab537daf7"
+    },
+    {
+      "path": "suraj_course/build_suraj_course.py",
+      "source_sha256": "729184daae0ca092641afef0a46ef0d9d8a87ad15756b07876e117ae9a736d41",
+      "snapshot_sha256": "729184daae0ca092641afef0a46ef0d9d8a87ad15756b07876e117ae9a736d41"
+    },
+    {
+      "path": "suraj_course/suraj_course.py",
+      "source_sha256": "1fb06d0baf1473fa7e838ac76b2635c98dc45da9374f7af3312e10c37443b610",
+      "snapshot_sha256": "1fb06d0baf1473fa7e838ac76b2635c98dc45da9374f7af3312e10c37443b610"
+    },
+    {
+      "path": "suraj_course/suraj_course_template.py",
+      "source_sha256": "8a8f087064ba9fe84e1c2c532d2750ad63b93460087e018568d14fbf8f139020",
+      "snapshot_sha256": "8a8f087064ba9fe84e1c2c532d2750ad63b93460087e018568d14fbf8f139020"
+    },
+    {
+      "path": "suraj_course/test_suraj_course.py",
+      "source_sha256": "7ab17bb786cc55095beb9838521d43c2420db6dca3b3e1f273b9f25ff105e70b",
+      "snapshot_sha256": "7ab17bb786cc55095beb9838521d43c2420db6dca3b3e1f273b9f25ff105e70b"
+    },
+    {
+      "path": "team_ws/src/pathfinding/.gitignore",
+      "source_sha256": "564a49c10ba929e1b40c4f7ccd673063d5a17cbf2536b3edc3904980dbdb1739",
+      "snapshot_sha256": "5a6dd541cc9d27888d49a67bc180ff0182cde596ec2fdb108d8f1ecd6eaf62b2"
+    },
+    {
+      "path": "team_ws/src/pathfinding/README.md",
+      "source_sha256": "8edde5f35e4451816363d0db0ff34628ac08b0d94b1036426270124dfe427ecd",
+      "snapshot_sha256": "c9c3fe616f1851f96c30e766aeb7b86e29f6ccb64febcd10ce1343fce9dbf84b"
+    },
+    {
+      "path": "team_ws/src/pathfinding/config/course_v3.yaml",
+      "source_sha256": "b81695c3733beca1c418a2b52c2d85024e0d2765d8622a6caac15673edd8fc74",
+      "snapshot_sha256": "bc2087d6ccd224b0bff327327158b2d106a4304079b215d407d0e00de6393369"
+    },
+    {
+      "path": "team_ws/src/pathfinding/course/dronehacks-course-v3.mtl",
+      "source_sha256": "ca40d304e9a49c0a38d8631ef9b5120cc60bc4b7bd9176b9b57467d1699f21ca",
+      "snapshot_sha256": "5d8e483cb6f0101d8b8939d118d9dd7fb4fc5f09a1ca5f6eb4ae1e4f5b48020b"
+    },
+    {
+      "path": "team_ws/src/pathfinding/course/dronehacks-course-v3.obj",
+      "source_sha256": "c4d81de84728f323ed797d6759d78f6fce04338a23496c4f5409e1124755d198",
+      "snapshot_sha256": "e610bcf9666422e2a0a78cb46f542fc8c4d5a7ef9b15f6123f1abe40f5b8e9e1"
+    },
+    {
+      "path": "team_ws/src/pathfinding/drl/__init__.py",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "snapshot_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "team_ws/src/pathfinding/drl/config.py",
+      "source_sha256": "346c23d2228e096cdb0b8fb3fc6975050734647484b5fad2e64fbb71e9deba51",
+      "snapshot_sha256": "7e6eefedd9a9bafcf3ee2d9ff5bf25afe02d3ff4d2c8c852597df585fb1acb8f"
+    },
+    {
+      "path": "team_ws/src/pathfinding/drl/course.py",
+      "source_sha256": "2f61b65c7b66625c84935caa92a181f2017e95a4e165dab0e0016b0df3ed3c8a",
+      "snapshot_sha256": "84899e3c207b4b2acd3f7b0cd92d4f481c68da3a96d5d96087425295b0058349"
+    },
+    {
+      "path": "team_ws/src/pathfinding/dronehacks_pathplan/__init__.py",
+      "source_sha256": "9903d3e797bbd2609127ac280eba6965a9313a949536a892bb3f2ab261b2cad1",
+      "snapshot_sha256": "09cec0668a703f0e0b62bcc546b8e52de9e3b2e955e68aea49325e37e7fe439b"
+    },
+    {
+      "path": "team_ws/src/pathfinding/dronehacks_pathplan/check_pipeline.py",
+      "source_sha256": "3185d062ec90190ee1b039b2aca92fdbdb0461158d1097ac4796c29862870bd6",
+      "snapshot_sha256": "8ea1cf7daa5335529be1760df3aaf824c5370d9a84d875414257866c58a63bb6"
+    },
+    {
+      "path": "team_ws/src/pathfinding/dronehacks_pathplan/dry_run.py",
+      "source_sha256": "88c63a9806a77344514d5914b65320522c635b8087a12462066036df7281e691",
+      "snapshot_sha256": "150b1d0baba81412b224e7c0a55ddf721bbcfd97f8e837c4f17d648850fc0e3c"
+    },
+    {
+      "path": "team_ws/src/pathfinding/dronehacks_pathplan/fake_px4.py",
+      "source_sha256": "1df7c379b40350d0e8a8dfd1805590f78d31d0bd8acaed6ab8c1d9e0420803ad",
+      "snapshot_sha256": "f87ff4f1c41b53438bea3cea782238d94b6657324f1b648163963510e048b182"
+    },
+    {
+      "path": "team_ws/src/pathfinding/dronehacks_pathplan/mission.py",
+      "source_sha256": "93ff80611d30f81adeab5cd7036099e5b6d71152d123a0037fd4eb8d4da50337",
+      "snapshot_sha256": "477da371a36df5fb675c39c8a1f45a4ba4fed7bc3e0587ab10f5864452a9ec7f"
+    },
+    {
+      "path": "team_ws/src/pathfinding/dronehacks_pathplan/node.py",
+      "source_sha256": "ffdff28b83218cc20f578e48752b8b0b000b9bbb05dde7c50a23a81f659c40ff",
+      "snapshot_sha256": "5bd605137467ccb37c40c7956ad08e0c66d0e572bbbbc801408a2cd8d4b499a6"
+    },
+    {
+      "path": "team_ws/src/pathfinding/dronehacks_pathplan/planner_core.py",
+      "source_sha256": "c2346459743b398794c116fa4ad9c7c1533fea9861e60857b9f69a066c4bdc6a",
+      "snapshot_sha256": "462f8476dd4543899e6095cd8ee917e209f56da2171455e54d200acc08a7acca"
+    },
+    {
+      "path": "team_ws/src/pathfinding/dronehacks_pathplan/report.py",
+      "source_sha256": "05d05c57b275cb91378d6ec5646265fb86848247e23244bb4d985ff7ea5769cb",
+      "snapshot_sha256": "5055bf4ceef6832cc09ff3f8b36f94ac19222b866e85bc8ddcd74bb69901e996"
+    },
+    {
+      "path": "team_ws/src/pathfinding/dronehacks_pathplan/sim_pilot.py",
+      "source_sha256": "1a0589fbf9e54467b6900f8d15cd3986754f87bff90f9e08ea547d4b870402f3",
+      "snapshot_sha256": "b9bb0eb83c3dea232fcef20c6fa4fe92db25cb07c5cfd7c031fe139305831f4b"
+    },
+    {
+      "path": "team_ws/src/pathfinding/gzsim/fly_planner.py",
+      "source_sha256": "8f0f2071d9adf40377ff56f35a7cd1ee80cc11165b4f5e0193b1eb82dcd952ba",
+      "snapshot_sha256": "5cc517c7ccab5649be68ccdf95e3be79c0a7a3355ebf78807a8ef068fa59704c"
+    },
+    {
+      "path": "team_ws/src/pathfinding/gzsim/make_world.py",
+      "source_sha256": "44f77fe4397c034c0c3a962e07fa4c57f5060a018cb711850ef89fbac294674d",
+      "snapshot_sha256": "08fcc3bd75d13267739e8c13127b4d0c773be3a3631e40c865663942bd041dc0"
+    },
+    {
+      "path": "team_ws/src/pathfinding/gzsim/run.sh",
+      "source_sha256": "85eedf33f119c5ea686f059db11e4f5dfb0746a829fa65564f039ab2ea4f455e",
+      "snapshot_sha256": "372cfd5a837b8472e6ea633a69b7fda31ef083c258f03f02d1893927a9b706da"
+    },
+    {
+      "path": "team_ws/src/pathfinding/launch/pathplan.launch.py",
+      "source_sha256": "7681ebc366bc43ce871c11ba5bd6cdff85649709b9b7b050d9cda7325f108228",
+      "snapshot_sha256": "dc47d96d579fee8f8f6a19c1db1d64ca6d7f49e32d8e69d50e52e645b0ae5560"
+    },
+    {
+      "path": "team_ws/src/pathfinding/launch/selftest.launch.py",
+      "source_sha256": "ba830458f4a9df0667a5585ba794f003b3e8d25089e95b2abb974749fe63007e",
+      "snapshot_sha256": "330e8111a85eef8de24366552fc53f53a58487636f77d26b984c6d87c29834f6"
+    },
+    {
+      "path": "team_ws/src/pathfinding/launch/sim.launch.py",
+      "source_sha256": "9e014824d593d6032224c85a02a2ddbd7d4d185903d66f7484168be2f62715b2",
+      "snapshot_sha256": "355e85293995d4647999507ebbd9b32766c4a7b95c04a2a65f3c9e5e31b60292"
+    },
+    {
+      "path": "team_ws/src/pathfinding/package.xml",
+      "source_sha256": "ff10965c27068f5269c749dd875e81a7691b6c4d741d27213ee3b2819e0d4528",
+      "snapshot_sha256": "8891b7f7c6d7e0105c4c8f19a903eb85ccae9885faffd65bbaeb2b787d130b4c"
+    },
+    {
+      "path": "team_ws/src/pathfinding/pathplan/__init__.py",
+      "source_sha256": "4f2d58dc49de9c305ce6b730ca4890723c38f77adc02b240720182a07dcb6f41",
+      "snapshot_sha256": "46454f0e623873a1870a5fde79c3fd5b3c594d6650b6162a46e561078fc68736"
+    },
+    {
+      "path": "team_ws/src/pathfinding/pathplan/belief.py",
+      "source_sha256": "7fd6dbaf3446406b7ee071fd7e840a1db55df40778ed823ab87df5132d2eb665",
+      "snapshot_sha256": "832e2fc16990ebdd1ad4226639ef06e60539bc75772ecc0e5cbd9fa359d044ab"
+    },
+    {
+      "path": "team_ws/src/pathfinding/pathplan/depth_projection.py",
+      "source_sha256": "255464dbdd46899477d10c3c25c13196c5ce225f84571c9c68b8a68267e6d67e",
+      "snapshot_sha256": "d0c4f42f5ee3d98a7bff7aad36b30fd5026f738d102fd85cce20fc61c1791e39"
+    },
+    {
+      "path": "team_ws/src/pathfinding/pathplan/dstar_lite.py",
+      "source_sha256": "3fb803e5c38978bbd1aa1a9a6ce38a6ff776d13e7f0060698f9ef022a188313f",
+      "snapshot_sha256": "81a5f157ca40158aa29c3ff50b1dd4bec50aefb48d30e8214f9eb56a5c70fe11"
+    },
+    {
+      "path": "team_ws/src/pathfinding/pathplan/grid_search.py",
+      "source_sha256": "4e7209d56f6a7b26fc3011698a619b544013340e2541693bda0c6489a28b89ab",
+      "snapshot_sha256": "d7cc25d42dbdb86d654ff85028e64d8b60af5bc47c4fd91eb4e1f83b43592b4b"
+    },
+    {
+      "path": "team_ws/src/pathfinding/pathplan/harness.py",
+      "source_sha256": "cea70800d2967d23bb39970ef26739f4981c28ba3aa30e6ec4adf99a08356249",
+      "snapshot_sha256": "0aae2cbecb13e3f85a8ca79e6c8df6937a6d1a08366ec1460e0aca2a1d2e80b2"
+    },
+    {
+      "path": "team_ws/src/pathfinding/pathplan/mission.py",
+      "source_sha256": "4237d14613ed20f670ec8bff81ba312135a8b788b7cfc16533748896ac7425d9",
+      "snapshot_sha256": "48d6efc5a32b12c1443f4db71452cc357a59b44de2591a636c68d834415eee9c"
+    },
+    {
+      "path": "team_ws/src/pathfinding/pathplan/online.py",
+      "source_sha256": "f395f38a2f3dd5e5f44ca5cc4b82d9fb1d58cfeff2c0318e7b72d1b2172ed2f2",
+      "snapshot_sha256": "564d6de38a6702046530ca37117ddb6e5acee2fa2a0638206902912111e82f15"
+    },
+    {
+      "path": "team_ws/src/pathfinding/pathplan/ros_node.py",
+      "source_sha256": "a76103cd2159ca1d4fdb1581c05d2a0b8c757edebd1687bb08d88f0fa145f17b",
+      "snapshot_sha256": "14e2e3e187bae5d0d6286f0a5fd59286f0d66c636e44e0c0b97f2b3f7a66f755"
+    },
+    {
+      "path": "team_ws/src/pathfinding/pathplan/sensor.py",
+      "source_sha256": "e7dbf81ff1fcff7e5ff8a8a07b62388a0c140fcc07577603528911de185debc2",
+      "snapshot_sha256": "0525e861e65431cf2eea7dec07b382dddc362b9ed928cfc9ecc150e84e9a8d19"
+    },
+    {
+      "path": "team_ws/src/pathfinding/pathplan/variants.py",
+      "source_sha256": "ac80925c09bbc021c93c72c9dd897efddadadc3649f793bc5ee6971120108252",
+      "snapshot_sha256": "98bc052012db3b26c823cc66eba08d28c535d8f4d5825f2a65e14309ec5de9d7"
+    },
+    {
+      "path": "team_ws/src/pathfinding/pathplan/world.py",
+      "source_sha256": "703a5b9c102498928feeebff2d50e9478fadee423757a6c454149cdb5cbac518",
+      "snapshot_sha256": "042886ad17f5f583507e48d7bab142bb909d76d3d5dade85770b855dc9838c67"
+    },
+    {
+      "path": "team_ws/src/pathfinding/requirements.txt",
+      "source_sha256": "2e89b57b90f0d218287ef8aa8b3c4745652ea8ceadb7823a16df29db351cb29d",
+      "snapshot_sha256": "3829fec7dbe21e1261565cca163d05a59522e5ea028f5c444399c964cdb700fe"
+    },
+    {
+      "path": "team_ws/src/pathfinding/resource/dronehacks_pathplan",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "snapshot_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "team_ws/src/pathfinding/setup.cfg",
+      "source_sha256": "43717b43b5720610098a96e45f7290958abb302db02964f2a05a8f16a92a6c64",
+      "snapshot_sha256": "46e5957fa7e46ad0e4179fc705b8dc4f44c684b7784f5a8b56432b7bb688d296"
+    },
+    {
+      "path": "team_ws/src/pathfinding/setup.py",
+      "source_sha256": "b0cf67ce0a4040c94f7594b724a6be798ab06fd9754725fb8264e368ea8c0020",
+      "snapshot_sha256": "21fd14fc4c6b0806b719d39a103dca75598e0baa81c9c035f86ba32fec2add66"
+    },
+    {
+      "path": "team_ws/src/pathfinding/tests/conftest.py",
+      "source_sha256": "63b4dced4b372a47497452fcc14c02c0a1abc65b22d3b93b4badfb6ec5db0401",
+      "snapshot_sha256": "0acaa2534ab3d6e2c0a1f6c1cfe4e5771d34fbb3c2563469e5bb36cdc8422f4e"
+    },
+    {
+      "path": "team_ws/src/pathfinding/tests/test_closed_loop.py",
+      "source_sha256": "3bbdecc1e7afecc67ff5d346493b4d0057e2b1993f461af069407e7fb04482e4",
+      "snapshot_sha256": "95a2e2acb2b3f2849562b80f8d8f5fcf342ce21af999bf506134a5dcd69e3052"
+    },
+    {
+      "path": "team_ws/src/pathfinding/tests/test_mission.py",
+      "source_sha256": "e26894bb008556afa05ea1bb91d745d413c770798753b77b471f2b76d06bfe79",
+      "snapshot_sha256": "c32d18289b3c364a49887793eaa91cd04ce212f802c8309766822939dfd75ab7"
+    },
+    {
+      "path": "team_ws/src/pathfinding/tests/test_pathplan_depth.py",
+      "source_sha256": "1bd2018f4ea90627c89a9b9314d701b94cab5f8a5d26df8607d99edbf9b642d2",
+      "snapshot_sha256": "b712661d8b1f899e301833f3435b96286a48fdb6893a5c7408a5e12b0190546b"
+    },
+    {
+      "path": "team_ws/src/pathfinding/tests/test_pathplan_grid_search.py",
+      "source_sha256": "00510f558f3e7e1bfc019969db9fd225977fca1953a70bef0748e6c8eb4fb2f8",
+      "snapshot_sha256": "241de89c5f85ec732258b0c486be684cffb6f0fee011e6c39f9368fdf28b95f9"
+    },
+    {
+      "path": "team_ws/src/pathfinding/tests/test_pathplan_mission.py",
+      "source_sha256": "7177cfc364e8341c078e890d13ddc26f62092f59f4beee4795abfe0b335c1087",
+      "snapshot_sha256": "38172eb85813aff88e9f30161b351b314659874d57d63d8ef1caa376c9e43321"
+    },
+    {
+      "path": "team_ws/src/pathfinding/tests/test_pathplan_ros_helpers.py",
+      "source_sha256": "d6183ba7d10649a4b0dbcbac817955f5272d27dc448b11535d6db0fb901791f2",
+      "snapshot_sha256": "c6969c857104a4a2dc457fd8384f7e858cfb79f39f4f906b55a53e9f6a5b958a"
+    },
+    {
+      "path": "team_ws/src/pathfinding/tests/test_pathplan_world_edt.py",
+      "source_sha256": "ca762cedb188d6be5426bdb22b95b22dff1476ca942f9d650f82299ee0407ec6",
+      "snapshot_sha256": "481e2c91f15a64b61a2f8648a0d334037f678575c474ee16e07d240aa19bf5b1"
+    },
+    {
+      "path": "team_ws/src/txt",
+      "source_sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+      "snapshot_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "tools/px4log_summary.py",
+      "source_sha256": "4131b1aaca57b1094252bdc55c8364ab666f06ac555db6cb61d71f848b826103",
+      "snapshot_sha256": "4131b1aaca57b1094252bdc55c8364ab666f06ac555db6cb61d71f848b826103"
+    }
+  ],
+  "hash_policy": "source_sha256 preserves original working-copy bytes; snapshot_sha256 hashes the staged published file after line-ending normalization and any documented annotation."
+}

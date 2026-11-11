@@ -1,0 +1,8 @@
+# Offline planning, geometry, estimation helpers and analysis (Python 3.10+).
+# ROS 2, px4_msgs and cuVSLAM are installed separately in the target runtime.
+numpy>=1.24,<3
+scipy>=1.10,<2
+PyYAML>=6,<7
+Pillow>=10,<13
+matplotlib>=3.7,<4
+trimesh>=4,<6

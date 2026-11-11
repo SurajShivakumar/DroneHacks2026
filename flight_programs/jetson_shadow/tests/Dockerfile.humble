@@ -1,0 +1,9 @@
+# Test image that matches the Jetson's skybeta-stack userland: ROS 2 Humble, Ubuntu 22.04, Python 3.10,
+# apt numpy 1.21, NO scipy (the planner's numpy fallback is used). px4_msgs is not installed (the
+# program does not need it; the checker SKIPs /fmu/out/sensor_combined).
+#   docker build -t jetson-shadow-humble -f jetson_shadow/tests/Dockerfile.humble jetson_shadow/tests
+FROM ros:humble-ros-base
+RUN apt-get update && apt-get install -y --no-install-recommends python3-numpy procps \
+    && rm -rf /var/lib/apt/lists/* \
+    && python3 -c "import numpy, sys; print(sys.version, numpy.__version__)" \
+    && ! python3 -c "import scipy" 2>/dev/null
